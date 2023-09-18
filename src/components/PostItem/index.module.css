@@ -1,0 +1,46 @@
+.postMenu {
+    width: 450px;
+    height: 240px;
+    position: relative;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+.image {
+    position: absolute;
+    left: 65%;
+    top: 5%;
+    width: 150px;
+    height: 150px;
+}
+.misc {
+    display: block;
+    color: darkgray;
+    margin-left: 10px;
+}
+.title {
+    margin-left: 10px;
+    color: black;
+    font-size: 20px;
+}
+.desc {
+    padding: 10px;
+    width: 270px;
+    height: 100px;
+}
+.opinion {
+    fill: red;
+    margin-left: 10px;
+    width: 20px;
+    height: 20px;
+} 
+.opinion path {
+    fill: red;
+
+}
+
+.opinion2 {
+    margin-left: 5px;
+    transform: rotate(180deg);
+}

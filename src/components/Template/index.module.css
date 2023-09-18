@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+.wrapperWhite {
+    background-color: white;
+}
+.wrapperDark {
+    background-color: rgb(100, 100, 100);
+}
+.content {
+    min-height: calc(100vh - 100px);
+    display: flex;
+    justify-content: center;
+}
+.fon {
+    transition: 1s;
+}
+.theme {
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 50px;
+    height: 50px;
+    background: none;
+    border: none;
+    border-radius: 10px;
+    transition: 1s;
+}
+.theme:hover {
+    border: 1px solid rgb(127, 127, 127);
+}
+.theme:active {
+    border: 1px solid black;
+}
+.image {
+    width: 45px;
+    height: 45px;
+}
+.imageWhite {
+    filter: invert(100%);
+}
+.profileIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 15px;
+}
+.profileIcon:hover {
+    border: 1px solid gray;
+}
+.profileIcon:active {
+    border: 2px solid black;
+}

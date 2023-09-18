@@ -1,0 +1,53 @@
+.Button {
+    margin-left: 10px;
+    margin-top: 10px;
+    width: 150px;
+    height: 50px;
+    box-shadow: 2px 5px 5px rgba(0, 0, 0, 0.5);
+}
+.Primary {
+    background: blue;
+    color: white;
+    font-weight: 700;
+    border: none;
+}
+.Primary:hover {
+    background: rgb(52, 52, 255);
+}
+.Primary:active {
+    background: rgb(121, 121, 255);
+}
+.Primary:disabled {
+    background: gray;
+}
+.Secondary {
+    background: rgb(190, 190, 190);
+    color: white;
+    font-weight: 700;
+    border: none;
+}
+.Secondary:hover {
+    background: rgb(168, 168, 168);
+}
+.Secondary:active {
+    background: gray;
+}
+.Secondary:disabled {
+    background: rgb(220, 220, 220);
+}
+.Tretiary {
+    background: none;
+    color: red;
+    font-weight: 700;
+    border: none;
+}
+.Tretiary:hover {
+    border: 1px solid rgb(206, 206, 206);
+}
+.Tretiary:active {
+    border: 1px solid black;
+}
+.Tretiary:disabled {
+    color: gray;
+    border: none;
+}
