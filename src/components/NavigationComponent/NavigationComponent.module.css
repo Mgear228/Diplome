@@ -1,0 +1,37 @@
+.navigation {
+    position: sticky;
+    height: 704px;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 160px;
+    padding-top: 48px;
+    margin-left: 62px;
+}
+.navSmall {
+    list-style: none;
+    cursor: pointer;
+    margin-top: 104px;
+    color: rgba(128, 133, 139, 1);
+}
+.listElem {
+    display: flex;
+    margin-bottom: 40px;
+    border-radius: 10px;
+}
+.listElem:hover {
+    background-color: rgb(74, 74, 74);
+}
+.listElem:active {
+    background-color: rgb(85, 85, 85);
+}
+.listElem:first-child {
+    color: rgba(123, 97, 255, 1);
+}
+.listElem:nth-child(4) {
+    margin-bottom: 0;
+}
+.listImg {
+    margin-right: 20px;
+}
