@@ -3,15 +3,21 @@ import styles from './FiltrationComponent.module.css'
 import filter from '../../assets/usernameAssets/Filter.svg'
 import { useState, useEffect } from 'react';
 import { ModalFilter } from '../ModalFilter/ModalFilter';
+import { Input } from '../Input/Input';
+import pixema from '../../assets/navigationAssets/pixema.svg';
+import { useMediaQuery } from 'react-responsive';
+import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 
 type props = {
-    onKeyDown: (e: React.KeyboardEvent<HTMLInputElement>) => void;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export function FiltrationComponent({onKeyDown, onChange} : props) {
     const [clicked, setClicked] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
+    const isPhone = useMediaQuery({ maxWidth: 320 });
 
     const handleClick = () => {
         setClicked(!clicked);
@@ -32,10 +38,12 @@ export function FiltrationComponent({onKeyDown, onChange} : props) {
 
     return (
         <div className={styles.filtrationGroup}>
-            <input onKeyDown={onKeyDown} onChange={onChange} className={styles.searchInput} type="text" placeholder='Search'/>
+            <img className={styles.logo} src={pixema} alt='pixema' />
+            <Input classname={styles.shorterInput} onKeyDown={onKeyDown} onChange={onChange} placeholder='Search'/>
             <button onClick={handleClick}><img className={styles.filter} src={filter}/></button>
             {mounted && <ModalFilter onClick={handleClick} state={clicked}/>}
-            <Username user='Valera Pavlunin ; )'/>
+            {isMobile? <BurgerMenu /> : <Username user='Valera Pavlunin ; )'/>}
+            {isPhone? <Input classname={styles.phoneInput} onKeyDown={onKeyDown} onChange={onChange} placeholder='Search'/> : null}
         </div>
     );
 }

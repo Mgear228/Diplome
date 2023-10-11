@@ -49,7 +49,7 @@
 .name {
     display: flex;
     justify-content: space-between;
-    margin-top: 48px;
+    margin-top: 28px;
     margin-left: 48px;
     width: 438px;
     height: 36px;
@@ -67,7 +67,7 @@
   flex-direction: column;
   color: white;
   margin-left: 48px;
-  margin-top: 48px;
+  margin-top: 10px;
 }
 .sorting {
   color: white;
@@ -75,9 +75,134 @@
   width: 400px;
   height: 56px;
   border-radius: 10px;
-  border: 1px solid gray;
+  border: 3px solid rgba(50, 53, 55, 1);
 }
-.sorting:nth-child(2) {
-  width: 200px;
-  height: 56px;
+.sortElem {
+  user-select: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  cursor: pointer;
+}
+.sortElemActive {
+  background-color: rgba(50, 53, 55, 1);
+}
+.filmName {
+  width: 400px;
+  height: 98px;
+  border-top: 1px solid rgba(50, 53, 55, 1);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  margin-left: 48px;
+  margin-top: 18px;
+}
+.filmName .nameInput {
+  margin-top: 5px;
+  width: 100%;
+}
+.genre {
+  color: white;
+  width: 400px;
+  margin-left: 48px;
+  margin-top: 20px;
+}
+.fromToBlock {
+  color: white;
+  width: 400px;
+  margin-top: 10px;
+  margin-left: 48px;
+}
+.shortInputBlock {
+  margin-top: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.fromToBlock .shortInput {
+  width: 45%;
+}
+.countryBlock {
+  color: white;
+  margin-left: 48px;
+  width: 400px;
+  margin-top: 10px;
+}
+.countryBlock .dropdownCountry {
+  height: 50px;
+}
+.clearShowBtns {
+  margin-left: 48px;
+  margin-top: 10px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+.endBtn {
+  width: 175px;
+  height: 46px;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(50, 53, 55, 1);
+}
+.endBtn:last-child {
+  background-color: rgba(123, 97, 255, 1);
+}
+.endBtn:hover {
+  filter: brightness(120%);
+}
+.endBtn:active {
+  filter: brightness(80%);
+}
+
+@media (max-width: 768px) {
+  .main {
+      left: 33%;
+  }
+}
+@media (max-width: 320px) {
+  .bgFilter {
+    display: none;
+  }
+  .main {
+    width: 320px;
+    left: 0;
+  }
+  .name {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .sortBy {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .sorting {
+    width: 320px;
+  }
+  .filmName .nameInput {
+    width: 320px;
+  }
+  .filmName {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .genre {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .fromToBlock {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .countryBlock {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .clearShowBtns {
+    width: 320px;
+    margin-left: 5px;
+  }
 }

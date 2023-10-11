@@ -16,6 +16,7 @@
     color: rgba(128, 133, 139, 1);
 }
 .listElem {
+    user-select: none;
     display: flex;
     margin-bottom: 40px;
     border-radius: 10px;
@@ -26,12 +27,19 @@
 .listElem:active {
     background-color: rgb(85, 85, 85);
 }
-.listElem:first-child {
+.listElemActive {
     color: rgba(123, 97, 255, 1);
+    fill: rgba(123, 97, 255, 1);
 }
 .listElem:nth-child(4) {
     margin-bottom: 0;
 }
 .listImg {
     margin-right: 20px;
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        display: none;
+    }
 }

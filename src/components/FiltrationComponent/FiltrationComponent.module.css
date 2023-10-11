@@ -3,15 +3,6 @@
     display: flex;
     width: 100%;
 }
-.searchInput {
-    color: rgb(213, 213, 213);
-    display: block;
-    width: 75%;
-    height: 56px;
-    background-color: rgba(50, 53, 55, 1);
-    border-radius: 10px;
-    padding-left: 20px;
-}
 .filter {
     top: 30%;
     left: 70%;
@@ -23,4 +14,35 @@
 }
 .filter:active {
     background-color: rgb(85, 85, 85);
+}
+.logo {
+    display: none;
+    margin-right: 50px;
+}
+.filtrationGroup .phoneInput {
+    width: 95%;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        display: inline;
+    }
+    .filter {
+        left: 82%;
+    }
+    .filtrationGroup .shorterInput {
+        width: 60%;
+    }
+}
+@media (max-width: 320px) {
+    .filtrationGroup .shorterInput {
+        display: none;
+    }
+    .filtrationGroup {
+        flex-wrap: wrap;
+    }
+    .filter {
+        top: 70%;
+    }
 }

@@ -5,7 +5,8 @@ import styles from './MainPage.module.css';
 import { useEffect, useState } from "react";
 import FIlmItem from '../../components/FilmItem/FIlmItem';
 import { film, getFilms } from '../../api/getFilms';
-import axios from 'axios';
+import { Template } from '../../components/Template/Template';
+import { useMediaQuery } from 'react-responsive';
 
 export function MainPage() {
     const [films, setFilms] = useState<film[]>([]);
@@ -16,12 +17,12 @@ export function MainPage() {
     const [prevParams, setPrevParams] = useState('');
     const [height, setHeight] = useState();
     const [spinner, setSpinner] = useState(false);
+    const isMobile = useMediaQuery({ maxWidth: 768 });
 
     const newContentHeight = height;
 
     useEffect(() => {
         document.addEventListener('scroll', srclHandler);
-        // Установите высоту html и body после загрузки компонента
         document.documentElement.style.height = newContentHeight + 'px';
         document.body.style.height = newContentHeight + 'px';
         return function() {
@@ -43,14 +44,10 @@ export function MainPage() {
             if(fetching) {
                 getFilms({currentPage, searchParams})
                     .then(response => {
-                        console.log(searchParams.toString());
-                        console.log(prevParams.toString());
                         if(searchParams.toString() !== prevParams.toString()) {
-                            console.log('suka');
-                            
-                            setFilms(response.Search);
+                            isMobile? setFilms(response.Search.slice(0, 9)) : setFilms(response.Search);
                         } else {
-                            setFilms([...films, ...response.Search]);
+                            isMobile? setFilms([...films, ...response.Search.slice(0, 9)]) : setFilms([...films, ...response.Search]);;
                         }
                         setCurrentPage(prevState => prevState + 1);
                     })
@@ -91,17 +88,13 @@ export function MainPage() {
     };
 
     return (
-        <div className={styles.mainPage}>
-            <NavigationComponent />
-            <div className={styles.paginationAndSearch}>
-                <FiltrationComponent onChange={handleSearchInputChange} onKeyDown={handleSearchInputConfirm}/>
-                <div className={styles.filmArea}>
-                    {films !== undefined ? films.map((film) => (
-                        <FIlmItem key={`${film.Title}-${film.Poster}`} film={film} />
-                    )) : <div className={styles.error}>Фильмы не найдены!</div>}
-                    <button onClick={handleScroll} className={styles.resetBtn}>Show more{spinner && <div className={styles.spinner}></div>}</button>
-                </div>
+        <Template change={handleSearchInputChange} confirm={handleSearchInputConfirm}>
+            <div className={styles.filmArea}>
+                {films !== undefined ? films.map((film) => (
+                    <FIlmItem key={`${film.Title}-${film.Poster}`} film={film} />
+                )) : <div className={styles.error}>Фильмы не найдены!</div>}
+                <button onClick={handleScroll} className={styles.resetBtn}>Show more{spinner && <div className={styles.spinner}></div>}</button>
             </div>
-        </div>
+        </Template>
     );
 }

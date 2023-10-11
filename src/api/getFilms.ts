@@ -4,6 +4,7 @@ export type film = {
     Title: string;
     Poster: string;
     Type: string;
+    imdbID: string;
 }
 type films = {
     Search: film[];

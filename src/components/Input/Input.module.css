@@ -1,0 +1,9 @@
+.searchInput {
+    color: rgb(213, 213, 213);
+    display: block;
+    width: 75%;
+    height: 56px;
+    background-color: rgba(50, 53, 55, 1);
+    border-radius: 10px;
+    padding-left: 20px;
+}
