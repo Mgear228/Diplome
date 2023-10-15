@@ -1,6 +1,4 @@
 import { useSearchParams } from 'react-router-dom';
-import { FiltrationComponent } from '../../components/FiltrationComponent/FiltrationComponent';
-import { NavigationComponent } from '../../components/NavigationComponent/NavigationComponent';
 import styles from './MainPage.module.css';
 import { useEffect, useState } from "react";
 import FIlmItem from '../../components/FilmItem/FIlmItem';
@@ -15,7 +13,7 @@ export function MainPage() {
     const [currentPage, setCurrentPage] = useState(1);
     const [fetching, setFetching] = useState(true);
     const [prevParams, setPrevParams] = useState('');
-    const [height, setHeight] = useState();
+    const [height, setHeight] = useState(1024);
     const [spinner, setSpinner] = useState(false);
     const isMobile = useMediaQuery({ maxWidth: 768 });
 
@@ -74,7 +72,7 @@ export function MainPage() {
         if(e.key === 'Enter') {
             e.preventDefault();
             
-            setSearchParams((prevParams: any) => {
+            setSearchParams((prevParams: URLSearchParams) => {
                 if (!inputValue) {
                     prevParams.delete("s");
                 } else {
@@ -88,7 +86,7 @@ export function MainPage() {
     };
 
     return (
-        <Template change={handleSearchInputChange} confirm={handleSearchInputConfirm}>
+        <Template firstState={1} change={handleSearchInputChange} confirm={handleSearchInputConfirm} setState={setFetching}>
             <div className={styles.filmArea}>
                 {films !== undefined ? films.map((film) => (
                     <FIlmItem key={`${film.Title}-${film.Poster}`} film={film} />

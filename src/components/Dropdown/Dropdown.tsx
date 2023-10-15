@@ -6,16 +6,23 @@ type props = {
     placeholder: string;
     classname?: string;
     nameOfElems: string[];
+    reset: boolean;
+    callback?: React.Dispatch<React.SetStateAction<string>> 
 }
 
-export function Dropdown({placeholder, nameOfElems, classname} : props) {
+export function Dropdown({placeholder, nameOfElems, classname, reset, callback} : props) {
     const [clicked, setClicked] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [selected, setSelected] = useState<string>(placeholder);
     const elemArray = nameOfElems;
 
     const handleClick = () => {
         setClicked(!clicked);
     }
+
+    useEffect(() => {
+        setSelected(placeholder);
+    }, [reset])
 
     useEffect(() => {
         if(clicked && !mounted) {
@@ -32,9 +39,14 @@ export function Dropdown({placeholder, nameOfElems, classname} : props) {
 
     return (
         <div className={styles.dropDown}>
-            <div className={styles.dropdownHeader} onClick={handleClick}>{placeholder}<img className={styles.arrow} src={arrow} alt='arrow'/></div>
+            <div className={styles.dropdownHeader} onClick={handleClick}>{selected}<img className={styles.arrow} src={arrow} alt='arrow'/></div>
             {mounted && <div className={`${styles.dropdownMenu} ${classname} ${clicked? styles.active: styles.inactive}`}>
-                {elemArray.map((elem) => (<div className={styles.dropdownElem} key={elem}>{elem}</div>))}
+                {elemArray.map((elem) => (<div className={styles.dropdownElem} key={elem} onClick={() => {
+                    setSelected(elem); 
+                    handleClick(); 
+                    if(!callback) return; 
+                    callback(elem);
+                    }}>{elem}</div>))}
             </div>}
         </div>
     );

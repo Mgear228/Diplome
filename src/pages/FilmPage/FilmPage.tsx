@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import styles from './FilmPage.module.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
@@ -6,6 +6,9 @@ import { Template } from '../../components/Template/Template';
 import ImdbRate from '../../assets/singleFilmAssets/Imdb.svg'
 import Favor from '../../assets/singleFilmAssets/Favor.svg'
 import Share from '../../assets/singleFilmAssets/Share.svg'
+import { Recomendations } from '../../components/Recomendations/Recomendations';
+import FIlmItem from '../../components/FilmItem/FIlmItem';
+import { film } from '../../api/getFilms';
 
 type singleFilm = {
     Title: string;
@@ -26,10 +29,14 @@ type singleFilm = {
 
 export function FilmPage() {
     const [film, setFilm] = useState<singleFilm>();
+    const [films, setFilms] = useState<film[]>([]);
+    const [inputValue, setInputValue] = useState<string>('');
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
     const {id} = useParams();
     
-    document.documentElement.style.height = 1000 + 'px';
-    document.body.style.height = 1000 + 'px';
+    document.documentElement.style.height = 1200 + 'px';
+    document.body.style.height = 1200 + 'px';
 
     useEffect(() => {
         (async() => {
@@ -37,6 +44,13 @@ export function FilmPage() {
             setFilm(response.data);
         })()
     }, [id])
+
+    useEffect(() => {
+        (async() => {
+            const response = await axios.get(`http://www.omdbapi.com/?apikey=966f2bf4&s=movie&page=${Math.random() * 10}`);
+            setFilms(response.data.Search);
+        })()
+    }, [])
 
     if(!film) return null;
 
@@ -51,8 +65,20 @@ export function FilmPage() {
         rateStyle = styles.filmBadRate;
     }
 
+    const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const newValue = e.target.value;
+        setInputValue(newValue);
+    };
+    
+    const handleSearchInputConfirm = (e: React.KeyboardEvent<HTMLInputElement>) => {
+        if(e.key === 'Enter') {
+            e.preventDefault();
+            navigate(`/?s=${inputValue}&page=1`);
+        }
+    };
+
     return (
-        <Template>
+        <Template firstState={1} change={handleSearchInputChange} confirm={handleSearchInputConfirm}>
             <div className={styles.filmMain}>
                 <div className={styles.filmPosterPart}>
                     <img className={styles.posterImg} src={film.Poster} alt="poster" />
@@ -82,6 +108,11 @@ export function FilmPage() {
                             <li>Writers<span>{film.Writer}</span></li>
                         </ul>
                     </div>
+                    <Recomendations length={films.length}>
+                        {films.map((elem) => (
+                            <FIlmItem key={`${elem.Title}-${elem.Poster}`} film={elem} />
+                        ))}
+                    </Recomendations>
                 </div>
             </div>
         </Template>

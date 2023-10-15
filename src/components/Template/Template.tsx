@@ -7,14 +7,16 @@ type props = {
     children?: ReactNode;
     change?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     confirm?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
+    firstState: number;
+    setState?: (bool: boolean) => void
 }
 
-export function Template({children, change, confirm} : props) {
+export function Template({children, change, confirm, firstState, setState} : props) {
     return (
         <div className={styles.mainPage}>
-            <NavigationComponent />
+            <NavigationComponent initState={firstState}/>
             <div className={styles.paginationAndSearch}>
-                <FiltrationComponent onChange={change} onKeyDown={confirm}/>
+                <FiltrationComponent onChange={change} onKeyDown={confirm} setState={setState}/>
                 {children}
             </div>
         </div>
