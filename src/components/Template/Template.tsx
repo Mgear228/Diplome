@@ -19,7 +19,7 @@ export function Template({children, change, confirm, firstState, setState} : pro
         <div className={`${styles.mainPage} ${theme === 'white'? styles.whiteTheme : styles.darkTheme}`}>
             <NavigationComponent initState={firstState}/>
             <div className={styles.paginationAndSearch}>
-                <FiltrationComponent onChange={change} onKeyDown={confirm} setState={setState}/>
+                <FiltrationComponent initState={firstState} onChange={change} onKeyDown={confirm} setState={setState}/>
                 {children}
             </div>
         </div>

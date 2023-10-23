@@ -74,11 +74,12 @@ export function SettingsPage() {
     }
     const handleSubmit = () => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const data = localStorage.getItem('Users');
+        const data = localStorage.getItem(user.email);
         const userObj = {
             name: nameValue,
             email: emailValue,
             password: passwordReset,
+            films: user.films,
         }
         if(!emailValue || !emailPattern.test(emailValue)) {
             setIsEmailValid(false);
@@ -96,16 +97,15 @@ export function SettingsPage() {
                         setPasswordConfirmError('Введите корректный пароль!');
                     } else {
                         setPasswordConfirmError('');
-                        const parsedData = JSON.parse(data);
-                        parsedData.forEach((elem: user) => {
-                            if(JSON.stringify(elem) === JSON.stringify(user)) {
-                                elem.name = nameValue;
-                                elem.email = emailValue;
-                                elem.password = passwordReset;
-                            }
-                        });
+                        const parsedData: user = JSON.parse(data);
+                        if(JSON.stringify(parsedData) === JSON.stringify(user)) {
+                            parsedData.name = nameValue;
+                            parsedData.email = emailValue;
+                            parsedData.password = passwordReset;
+                            parsedData.films = user.films;
+                        }
                         const stringData = JSON.stringify(parsedData);
-                        localStorage.setItem('Users', stringData);
+                        localStorage.setItem(user.email, stringData);
                         changeUser(userObj);
                     }
                 }

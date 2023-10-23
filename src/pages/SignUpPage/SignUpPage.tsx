@@ -7,11 +7,13 @@ import { useState } from 'react';
 import { InputValidation } from '../../components/InputValidation/InputValidation';
 import { Password } from '../../components/Password/Password';
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
+import { film } from '../../api/getFilms';
 
 export type user = {
     name: string;
     email: string;
     password: string;
+    films: film[];
 }
 
 export function SignUpPage() {
@@ -32,8 +34,8 @@ export function SignUpPage() {
         name: '',
         email: '',
         password: '',
+        films: [],
     }
-    const userArray: user[] = [];
 
     const handleNameChange = (e: any) => {
         const value = e.target.value;
@@ -58,13 +60,16 @@ export function SignUpPage() {
                 if(!passwordValue || passwordValue !== confirmPassword) {
                     setPasswordError('Введите корректный пароль!');
                 } else {
-                    userObj.password = passwordValue;
-                    setPasswordError('');
+                    if(passwordValue.length < 6) {
+                        setPasswordError('Пароль должен быть от 6 символов!');
+                    } else {
+                        userObj.password = passwordValue;
+                        setPasswordError('');
         
-                    userArray.push(userObj);
-                    const JSONData = JSON.stringify(userArray);
-                    localStorage.setItem(`Users`, JSONData);
-                    navigate('/authorize');
+                        const JSONData = JSON.stringify(userObj);
+                        localStorage.setItem(emailValue, JSONData);
+                        navigate('/authorize');
+                    }
                 }
             }
         }

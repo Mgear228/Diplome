@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Input } from '../Input/Input';
 import { Dropdown } from '../Dropdown/Dropdown';
 import { useSearchParams } from 'react-router-dom';
+import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 
 type props = {
     onClick: () => void;
@@ -13,7 +14,7 @@ type props = {
 
 export function ModalFilter({onClick, state, setState} : props) {
     const [searchParams, setSearchParams] = useSearchParams();
-
+    const {theme} = useThemeContext();
     const [inputValue, setInputValue] = useState<string>('');
     const [inputFrom, setInputFrom] = useState<string>('');
     const [dropdownValue, setDropdownValue] = useState<string>('');
@@ -55,7 +56,7 @@ export function ModalFilter({onClick, state, setState} : props) {
 
     return (<>
             <div className={styles.bgFilter} onClick={onClick}></div>
-            <div className={`${styles.main} ${state? styles.mainOpen : styles.mainClose}`}>
+            <div className={`${styles.main} ${state? styles.mainOpen : styles.mainClose} ${theme === 'white'? styles.mainWhite : ''}`}>
                 <div className={styles.name}>Filters<img className={styles.close} onClick={onClick} src={close}/></div>
                 <div className={styles.filmName}>Full or short movie name
                     <Input type='text' value={inputValue} onChange={handleChange} classname={styles.nameInput} placeholder='Your Text' />

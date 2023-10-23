@@ -31,6 +31,9 @@
     margin-left: 15px;
     color: white;
 }
+.nameWhite {
+    color: black;
+}
 .enter {
     cursor: pointer;
     display: flex;
@@ -135,7 +138,7 @@
     transition: 0.3s;
 }
 .profileRegActive {
-    transform: translateX(140px);
+    transform: translateX(160px);
 }
 .profileRegister:hover {
     filter: brightness(120%);

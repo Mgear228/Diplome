@@ -11,12 +11,13 @@ const defaultContextTypeValue: UserContextValueType = {
         name: '',
         email: '',
         password: '',
+        films: [],
     },
     changeUser: () => {},
 };
 
 export const useInitUserContext = () => {
-    const [user, setUser] = useState<user>({name: '', email: '', password: ''});
+    const [user, setUser] = useState<user>({name: '', email: '', password: '', films: []});
     const changeUser = (newUser: user) => {
         setUser(() => newUser);
     };

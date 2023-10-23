@@ -19,24 +19,22 @@ export function AuthorizePage() {
 
     const handleValidation = () => {
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const data = localStorage.getItem(`Users`);
+        const data = localStorage.getItem(email);
 
         if(!email || !emailPattern.test(email)) {
             setIsEmailValid(false);
         } else if(data) {
             setIsEmailValid(true);
-            const parsedData = JSON.parse(data);
-            parsedData.forEach((elem: user) => {
-                if((email === elem.email) && (password === elem.password)) {
-                    setErrorPassword('');
-                    changeUser(elem);
-                    navigate('/');
-                } else if(!password) {
-                    setErrorPassword('Введите пароль!');
-                } else {
-                    setErrorPassword('Введите правильный пароль!');
-                }
-            });
+            const parsedData: user = JSON.parse(data);
+            if((email === parsedData.email) && (password === parsedData.password)) {
+                setErrorPassword('');
+                changeUser(parsedData);
+                navigate('/');
+            } else if(!password) {
+                setErrorPassword('Введите пароль!');
+            } else {
+                setErrorPassword('Введите правильный пароль!');
+            }
         } else {
             setIsEmailValid(false);
         }

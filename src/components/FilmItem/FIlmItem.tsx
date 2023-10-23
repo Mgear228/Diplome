@@ -7,6 +7,8 @@ import { film } from '../../api/getFilms';
 import favorButton from '../../assets/favouritesPageAssets/favorButton.svg';
 import trendsImg from '../../assets/trendsAssets/trendsFlame.svg';
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
+import { useUserContext } from '../../context/UserContext/UserContext';
+import { user } from '../../pages/SignUpPage/SignUpPage';
 
 const generateRandRate = () => {
     const random = Math.random() * 100;
@@ -23,6 +25,7 @@ type props = {
 }
 
 const FilmItem = ({ film, favor, setFilms, trends } : props) => {
+    const {user} = useUserContext();
     const {theme} = useThemeContext();
     const [appear, setAppear] = useState<boolean>(false);
     const [imageError, setImageError] = useState<boolean>(false);
@@ -35,8 +38,16 @@ const FilmItem = ({ film, favor, setFilms, trends } : props) => {
     }
 
     const handleClick = () => {
-        localStorage.removeItem(`movie_${film.Title}`);
-        if(setFilms) setFilms((prevFilms) => prevFilms.filter((favorFilm) => favorFilm.Title !== film.Title));
+        const data = localStorage.getItem(user.email);
+        if(data) {
+            const parsedData: user = JSON.parse(data);
+            const removedFilm = parsedData.films.findIndex((elem) => elem.imdbID === film.imdbID)
+            if(removedFilm !== -1) {
+                parsedData.films.splice(removedFilm, 1);
+                localStorage.setItem(user.email, JSON.stringify(parsedData));
+            }
+            if(setFilms) setFilms((prevFilms) => prevFilms.filter((favorFilm) => favorFilm.Title !== film.Title));
+        }
     }
 
     let rateStyle;

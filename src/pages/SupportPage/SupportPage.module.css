@@ -76,3 +76,9 @@
     width: 100%;
     height: 50px;
 }
+
+@media (max-width: 768px) {
+    .authorizeMain {
+        width: 320px;
+    }
+}

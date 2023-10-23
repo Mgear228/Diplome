@@ -41,13 +41,15 @@ export function Username({ user } : props) {
             name: '',
             email: '',
             password: '',
+            films: [],
         });
         navigate('/authorize');
     }
 
     useEffect(() => {
         for(const key in user) {
-            if(user[key as keyof user] !== '') {
+            const value = user[key as keyof user];
+            if(value !== '' && !(Array.isArray(value) && value.length === 0)) {
                 setIsUser(false);
                 return;
             }
@@ -84,17 +86,17 @@ export function Username({ user } : props) {
     return (
         <div className={styles.username}>
             {isUser? <div className={styles.userGroup}>
-                {mountFocused && <div className={`${styles.enter} ${focused? styles.enterActive : styles.enterInactive} ${theme === 'white'? styles.nameDark : ''}`} onPointerEnter={handleFocus} onPointerLeave={handleDisfocus} onClick={() => navigate('/authorize')}>Войти в аккаунт</div>}
+                {mountFocused && <div className={`${styles.enter} ${focused? styles.enterActive : styles.enterInactive} ${theme === 'white'? styles.nameDark : ''}`} onPointerEnter={handleFocus} onPointerLeave={handleDisfocus} onClick={() => navigate('/authorize')}>Enter to the account</div>}
                 <div className={`${styles.profileRegister} ${focused? styles.profileRegActive : ''}`} onPointerEnter={handleFocus} onPointerLeave={handleDisfocus}><img className={styles.profilePicture} src={profileRegister} alt='registr'/></div>
             </div> : null}
             {isUser? null : <div className={styles.userGroup}>
                 <div className={styles.userShort}>{initialsString}</div>
-                <div className={styles.name}>{user.name}</div>
+                <div className={`${styles.name} ${theme === 'white'? styles.nameWhite : ''}`}>{user.name}</div>
             </div>}
             {isUser? null : <div className={styles.arrowGroup}>
                 <img className={styles.arrow} src={arrow} onClick={handleClick}/>
                 {mounted && <div className={`${styles.userDropDown} ${clicked? styles.active : styles.inactive}`}>
-                    <div className={styles.dropDownElem} onClick={handleExit}>Выйти</div>
+                    <div className={styles.dropDownElem} onClick={handleExit}>Exit</div>
                 </div>}
             </div>}
         </div>

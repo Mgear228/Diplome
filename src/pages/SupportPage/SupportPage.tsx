@@ -18,21 +18,19 @@ export function SupportPage() {
     document.body.style.height = 740 + 'px';
 
     const handleSubmit = () => {
-        const data = localStorage.getItem('Users');
+        const data = localStorage.getItem(email);
         if(data) {
-            const parsedData = JSON.parse(data);
-            parsedData.forEach((elem: user) => {
-                if(!email || email !== elem.email) {
-                    setIsEmailValid(false);
-                } else {
-                    setIsEmailValid(true);
-                    setConfirm(true);
-                    const timer = setTimeout(() => {
-                        navigate('/authorize');
-                        clearTimeout(timer);
-                    }, 2500);
-                }
-            })
+            const parsedData: user = JSON.parse(data);
+            if(!email || email !== parsedData.email) {
+                setIsEmailValid(false);
+            } else {
+                setIsEmailValid(true);
+                setConfirm(true);
+                const timer = setTimeout(() => {
+                    navigate('/authorize');
+                    clearTimeout(timer);
+                }, 2500);
+            }
         }
     }
 

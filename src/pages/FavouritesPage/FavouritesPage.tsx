@@ -5,26 +5,27 @@ import { useState, useEffect } from 'react';
 import { NoFavourites } from '../../components/NoFavourites/NoFavourites';
 import { film } from '../../api/getFilms';
 import FilmItem from '../../components/FilmItem/FilmItem';
+import { useUserContext } from '../../context/UserContext/UserContext';
+import { user } from '../SignUpPage/SignUpPage';
 
 export function FavouritesPage() {
     const [inputValue, setInputValue] = useState<string>('');
     const navigate = useNavigate();
-    const keys = Object.keys(localStorage);
     const [films, setFilms] = useState<film[]>([]);
+    const {user} = useUserContext();
     
     document.documentElement.style.height = 1024 + 'px';
     document.body.style.height = 1024 + 'px';
     
     useEffect(() => {
-        keys.forEach((key) => {
-            if(key.includes('movie')) {
-                const value = localStorage.getItem(key);
-                if(value) {
-                    const parsedValue = JSON.parse(value);
-                    setFilms((prevFilms) => [...prevFilms, parsedValue]);
-                }
+        if(user) {
+            const data = localStorage.getItem(user.email);
+            if(data) {
+                const parsedData: user = JSON.parse(data);
+                setFilms((prevFilms) => [...prevFilms, ...parsedData.films]);
             }
-        });
+        }
+        return;
     }, [])
 
     const handleSearchInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {

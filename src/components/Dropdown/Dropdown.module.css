@@ -16,6 +16,9 @@
     background-color: rgba(50, 53, 55, 1);
     user-select: none;
 }
+.dropdownWhite {
+    background-color: white;
+}
 .dropdownMenu {
     display: flex;
     flex-direction: column;
@@ -28,6 +31,9 @@
     z-index: 1;
     border-radius: 0 0 10px 10px;
     background-color: rgba(50, 53, 55, 1);
+}
+.dropdownMenuWhite {
+    background-color: white;
 }
 @keyframes In {
     from {
@@ -62,6 +68,9 @@
     justify-content: center;
     border-radius: 10px;
     background-color: rgb(34, 35, 36);
+}
+.dropdownElemWhite {
+    background-color: gray;
 }
 .arrow {
     margin-right: 20px;

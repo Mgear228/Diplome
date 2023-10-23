@@ -13,9 +13,10 @@ type props = {
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     setState?: (bool: boolean) => void;
+    initState: number;
 }
 
-export function FiltrationComponent({onKeyDown, onChange, setState} : props) {
+export function FiltrationComponent({onKeyDown, onChange, setState, initState} : props) {
     const [clicked, setClicked] = useState(false);
     const [mounted, setMounted] = useState(false);
     const {user} = useUserContext();
@@ -45,7 +46,7 @@ export function FiltrationComponent({onKeyDown, onChange, setState} : props) {
             <Input type='text' classname={styles.shorterInput} onKeyDown={onKeyDown} onChange={onChange} placeholder='Search'/>
             <button onClick={handleClick}><img className={styles.filter} src={filter}/></button>
             {mounted && <ModalFilter onClick={handleClick} state={clicked} setState={setState}/>}
-            {isMobile? <BurgerMenu /> : <Username user={user}/>}
+            {isMobile? <BurgerMenu initState={initState}/> : <Username user={user}/>}
             {isPhone? <Input type='text' classname={styles.phoneInput} onKeyDown={onKeyDown} onChange={onChange} placeholder='Search'/> : null}
         </div>
     );

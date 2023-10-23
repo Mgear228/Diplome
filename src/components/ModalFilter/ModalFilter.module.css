@@ -9,6 +9,9 @@
     transform: translateX(100%);
     z-index: 2;
 }
+.mainWhite {
+  background-color: gray;
+}
 .bgFilter {
     position: fixed;
     background-color: black;

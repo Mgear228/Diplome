@@ -85,3 +85,9 @@
 .signUpBtn:active {
     filter: brightness(120%);
 }
+
+@media (max-width: 768px) {
+    .authorizeMain {
+        width: 320px;
+    }
+}

@@ -10,6 +10,8 @@ import { Recomendations } from '../../components/Recomendations/Recomendations';
 import { film } from '../../api/getFilms';
 import FilmItem from '../../components/FilmItem/FilmItem';
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
+import { useUserContext } from '../../context/UserContext/UserContext';
+import { user } from '../SignUpPage/SignUpPage';
 
 type singleFilm = {
     Title: string;
@@ -29,6 +31,13 @@ type singleFilm = {
     Runtime: string;
 }
 
+const userObj = {
+    name: '',
+    email: '',
+    password: '',
+    films: [],
+}
+
 export function FilmPage() {
     const [film, setFilm] = useState<singleFilm>();
     const [films, setFilms] = useState<film[]>([]);
@@ -36,10 +45,23 @@ export function FilmPage() {
     const [active, setActive] = useState<boolean>();
     const navigate = useNavigate();
     const {id} = useParams();
+    const {user} = useUserContext();
     const {theme} = useThemeContext();
+    const [isUser, setIsUser] = useState<boolean>(false);
     
     document.documentElement.style.height = 1200 + 'px';
     document.body.style.height = 1200 + 'px';
+
+    useEffect(() => {
+        for(const key in user) {
+            const value = user[key as keyof user];
+            if(value !== '' && !(Array.isArray(value) && value.length === 0)) {
+                setIsUser(false);
+                return;
+            }
+        }
+        setIsUser(true);
+    }, [user])
 
     useEffect(() => {
         const data = localStorage.getItem(`${film?.Title}`);
@@ -90,14 +112,17 @@ export function FilmPage() {
 
     const handleClick = () => {
         setActive(true);
-        const data = {
-            Title: film.Title,
-            Type: film.Type,
-            Poster: film.Poster,
-            imdbID: film.imdbID,
-        };
-        const jsonData = JSON.stringify(data);
-        localStorage.setItem(`movie_${film.Title}`, jsonData);
+        if(!active) {
+            const data = {
+                Title: film.Title,
+                Type: film.Type,
+                Poster: film.Poster,
+                imdbID: film.imdbID,
+            };
+            user.films.push(data);        
+            const stringData = JSON.stringify(user);
+            localStorage.setItem(user.email, stringData);
+        }
     }
 
     return (
@@ -106,7 +131,7 @@ export function FilmPage() {
                 <div className={styles.filmPosterPart}>
                     <img className={styles.posterImg} src={film.Poster} alt="poster" />
                     <div className={styles.feedback}>
-                        <div className={`${styles.feedbackBtnFavor} ${active? styles.feedbackBtnFavorActive : ''} ${theme === 'white'? styles.feedbackBtnFavorWhite : ''}`} onClick={handleClick}><img src={Favor} alt='favor'/></div>
+                        <div className={`${styles.feedbackBtnFavor} ${active? styles.feedbackBtnFavorActive : ''} ${theme === 'white'? styles.feedbackBtnFavorWhite : ''}`} onClick={() => isUser? alert('You need to be registrated to favor films!') : handleClick()}><img src={Favor} alt='favor'/></div>
                         <div className={`${styles.feedbackBtnShare} ${theme === 'white'? styles.feedbackBtnShareWhite : ''}`} onClick={() => alert('Oops! This feature is coming soon.')}><img src={Share} alt='share'/></div>
                     </div>
                 </div>
