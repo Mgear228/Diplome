@@ -1,0 +1,171 @@
+.settingsBlocks {
+    width: 75%;
+    margin-top: 36px;
+    color: white;
+    font-size: 20px;
+    font-weight: 400;
+}
+.settingsBlocksWhite {
+    color: black;
+}
+.profileBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+    width: 100%;
+    height: 168px;
+    border-radius: 10px;
+    background-color: rgba(36, 36, 38, 1);
+}
+.profileBlockWhite {
+    background-color: gray;
+}
+.inputBlock {
+    font-size: 15px;
+    width: 45%;
+    height: 100px;
+}
+.longInput {
+    width: 100%;
+}
+.passwordBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+    width: 100%;
+    height: 250px;
+    border-radius: 10px;
+    background-color: rgba(36, 36, 38, 1);
+}
+.passwordBlockWhite {
+    background-color: gray;
+}
+.passwordLine {
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.passwordLine .inputBlock:nth-last-child(-n+3) {
+    width: 90%;
+}
+.passwordLine:first-child {
+    justify-content: flex-start;
+}
+.colorBlock {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-top: 10px;
+    width: 100%;
+    height: 75px;
+    border-radius: 10px;
+    background-color: rgba(36, 36, 38, 1);
+}
+.colorBlockWhite {
+    background-color: gray;
+}
+.colorLine {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 45%;
+    height: 50px;
+}
+.colorLine:last-child {
+    align-items: end;
+}
+.colorText {
+    font-size: 15px;
+    user-select: none;
+}
+.colorDesc {
+    font-size: 13px;
+    color: gray;
+    user-select: none;
+}
+.colorDescWhite {
+    color: black;
+}
+.colorButton {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    width: 32px;
+    height: 20px;
+    background-color: rgba(123, 97, 255, 1);
+    border-radius: 10px;
+    transition: 0.3s;
+}
+.btnCircle {
+    position: relative;
+    left: 45%;
+    background-color: white;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+.colorButton:hover {
+    filter: brightness(110%);
+}
+.colorButtonDeactive {
+    background-color: rgba(50, 53, 55, 1);
+}
+.colorButtonActive {
+    background-color: rgba(123, 97, 255, 1);
+}
+.btnCircleActive {
+    animation: slideIn 0.3s forwards;
+}
+.btnCircleDeactive {
+    animation: slideOut 0.3s forwards;
+}
+@keyframes slideIn {
+    from {
+        left: 5%;
+    } to {
+        left: 45%;
+    }
+}
+@keyframes slideOut {
+    from {
+        left: 45%;
+    } to {
+        left: 5%;
+    }
+}
+.settingsBlocks:last-child {
+    display: flex;
+    justify-content: end;
+}
+.settingsBtns {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 206px;
+    height: 46px;
+    border-radius: 10px;
+    margin-left: 30px;
+    user-select: none;
+    background-color: rgba(50, 53, 55, 1);
+}
+.settingsBtns:last-child {
+    background-color: rgba(123, 97, 255, 1);
+}
+.settingsBtns:hover {
+    filter: brightness(120%);
+}
+.settingsBtns:active {
+    filter: brightness(80%);
+}
+
+@media (max-width: 768px) {
+    .settingsBlocks {
+        width: 95%;
+    }
+}

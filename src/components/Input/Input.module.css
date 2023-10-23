@@ -1,9 +1,33 @@
 .searchInput {
     color: rgb(213, 213, 213);
     display: block;
-    width: 75%;
+    width: 100%;
     height: 56px;
     background-color: rgba(50, 53, 55, 1);
     border-radius: 10px;
     padding-left: 20px;
+}
+.inputBlock {
+    width: 75%;
+    position: relative;
+}
+.errorInput {
+    border: 1px solid red;
+}
+.error {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+}
+.whiteInput {
+    background-color: white;
+    border: 1px solid gray;
+    color: black;
+}
+
+@media (max-width: 430px) {
+    .searchInput::placeholder {
+        font-size: 9px;
+    }
 }

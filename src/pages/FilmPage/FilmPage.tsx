@@ -1,4 +1,4 @@
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styles from './FilmPage.module.css'
 import { useEffect, useState } from 'react'
 import axios from 'axios';
@@ -7,8 +7,9 @@ import ImdbRate from '../../assets/singleFilmAssets/Imdb.svg'
 import Favor from '../../assets/singleFilmAssets/Favor.svg'
 import Share from '../../assets/singleFilmAssets/Share.svg'
 import { Recomendations } from '../../components/Recomendations/Recomendations';
-import FIlmItem from '../../components/FilmItem/FIlmItem';
 import { film } from '../../api/getFilms';
+import FilmItem from '../../components/FilmItem/FilmItem';
+import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 
 type singleFilm = {
     Title: string;
@@ -24,6 +25,7 @@ type singleFilm = {
     Director: string;
     Writer: string;
     imdbRating: string;
+    imdbID: string;
     Runtime: string;
 }
 
@@ -31,12 +33,21 @@ export function FilmPage() {
     const [film, setFilm] = useState<singleFilm>();
     const [films, setFilms] = useState<film[]>([]);
     const [inputValue, setInputValue] = useState<string>('');
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [active, setActive] = useState<boolean>();
     const navigate = useNavigate();
     const {id} = useParams();
+    const {theme} = useThemeContext();
     
     document.documentElement.style.height = 1200 + 'px';
     document.body.style.height = 1200 + 'px';
+
+    useEffect(() => {
+        const data = localStorage.getItem(`${film?.Title}`);
+        if(data) { 
+            const parsedData: film = JSON.parse(data);
+            if(parsedData.Title === film?.Title) setActive(true);
+        }
+    }, [film])
 
     useEffect(() => {
         (async() => {
@@ -47,7 +58,7 @@ export function FilmPage() {
 
     useEffect(() => {
         (async() => {
-            const response = await axios.get(`http://www.omdbapi.com/?apikey=966f2bf4&s=movie&page=${Math.random() * 10}`);
+            const response = await axios.get(`http://www.omdbapi.com/?apikey=966f2bf4&s=movie&page=${Math.floor(Math.random() * 50) + 1}`);
             setFilms(response.data.Search);
         })()
     }, [])
@@ -77,19 +88,31 @@ export function FilmPage() {
         }
     };
 
+    const handleClick = () => {
+        setActive(true);
+        const data = {
+            Title: film.Title,
+            Type: film.Type,
+            Poster: film.Poster,
+            imdbID: film.imdbID,
+        };
+        const jsonData = JSON.stringify(data);
+        localStorage.setItem(`movie_${film.Title}`, jsonData);
+    }
+
     return (
         <Template firstState={1} change={handleSearchInputChange} confirm={handleSearchInputConfirm}>
             <div className={styles.filmMain}>
                 <div className={styles.filmPosterPart}>
                     <img className={styles.posterImg} src={film.Poster} alt="poster" />
                     <div className={styles.feedback}>
-                        <div className={styles.feedbackBtnFavor}><img src={Favor} alt='favor'/></div>
-                        <div className={styles.feedbackBtnShare}><img src={Share} alt='share'/></div>
+                        <div className={`${styles.feedbackBtnFavor} ${active? styles.feedbackBtnFavorActive : ''} ${theme === 'white'? styles.feedbackBtnFavorWhite : ''}`} onClick={handleClick}><img src={Favor} alt='favor'/></div>
+                        <div className={`${styles.feedbackBtnShare} ${theme === 'white'? styles.feedbackBtnShareWhite : ''}`} onClick={() => alert('Oops! This feature is coming soon.')}><img src={Share} alt='share'/></div>
                     </div>
                 </div>
                 <div className={styles.filmDescPart}>
                     <div className={styles.filmType}>{film.Type.charAt(0).toUpperCase() + film.Type.slice(1)}</div>
-                    <div className={styles.filmTitle}>{film.Title}</div>
+                    <div className={`${styles.filmTitle} ${theme === 'white'? styles.filmTitleWhite : ''}`}>{film.Title}</div>
                     <div className={styles.filmRateAndTime}>
                         <div className={`${styles.filmRate} ${rateStyle}`}>{film.imdbRating}</div>
                         <div className={styles.filmImdbRate}><img src={ImdbRate} alt='rate'/>{film.imdbRating}</div>
@@ -110,7 +133,7 @@ export function FilmPage() {
                     </div>
                     <Recomendations length={films.length}>
                         {films.map((elem) => (
-                            <FIlmItem key={`${elem.Title}-${elem.Poster}`} film={elem} />
+                            <FilmItem key={`${elem.Title}-${elem.Poster}`} film={elem} />
                         ))}
                     </Recomendations>
                 </div>

@@ -39,6 +39,21 @@
     width: 24px;
     height: 24px;
 }
+.settingsDeactive {
+    pointer-events: none;
+    background-color: rgb(35, 35, 35);
+}
+.settingsDeactive:hover {
+    background-color: rgb(35, 35, 35);
+}
+.settingsDeactive:active {
+    background-color: rgb(35, 35, 35);
+}
+.lock {
+    margin-left: 30px;
+    width: 25px;
+    height: 25px;
+}
 
 @media (max-width: 768px) {
     .navigation {

@@ -1,7 +1,7 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './MainPage.module.css';
 import { useEffect, useState } from "react";
-import FIlmItem from '../../components/FilmItem/FIlmItem';
+import FIlmItem from '../../components/FilmItem/FilmItem';
 import { film, getFilms } from '../../api/getFilms';
 import { Template } from '../../components/Template/Template';
 import { useMediaQuery } from 'react-responsive';

@@ -1,5 +1,5 @@
 import styles from './Recomendations.module.css'
-import { ReactNode, useState, useEffect, Children, cloneElement } from 'react';
+import { ReactNode, useState } from 'react';
 import pointer from '../../assets/filmPageAssets/pointer.svg'
 
 type props = {

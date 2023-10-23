@@ -20,7 +20,7 @@
     margin-right: 50px;
 }
 .filtrationGroup .phoneInput {
-    width: 95%;
+    width: 90%;
     margin-top: 20px;
 }
 
@@ -35,7 +35,7 @@
         width: 60%;
     }
 }
-@media (max-width: 420px) {
+@media (max-width: 500px) {
     .filtrationGroup .shorterInput {
         display: none;
     }
@@ -44,6 +44,7 @@
         flex-wrap: wrap;
     }
     .filter {
+        z-index: 1;
         top: 70%;
     }
 }

@@ -32,9 +32,21 @@
 .pointer {
     width: 20px;
 }
+.pointer:hover {
+    filter: brightness(120%);
+}
+.pointer:active {
+    filter: brightness(80%);
+}
 .pointerReverse {
     width: 20px;
     transform: scaleX(-1);
+}
+.pointerReverse:hover {
+    filter: brightness(120%);
+}
+.pointerReverse:active {
+    filter: brightness(80%);
 }
 
 @media (max-width: 768px) {
