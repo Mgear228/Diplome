@@ -41,31 +41,32 @@ export function SignUpPage() {
     }
 
     const handleValidation = () => {
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
         if(!nameValue) {
             setNameError('Введите корректное имя!')
         } else {
             userObj.name = nameValue;
             setNameError('');
-        }
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if(!emailValue) {
-            setEmailIsValid(false);
-        } else if(!emailPattern.test(emailValue)) {
-            setEmailIsValid(false);
-        } else {
-            userObj.email = emailValue;
-            setEmailIsValid(true);
-        }
-        if(!passwordValue) {
-            setPasswordError('Введите корректный пароль!');
-        } else {
-            userObj.password = passwordValue;
-            setPasswordError('');
 
-            userArray.push(userObj);
-            const JSONData = JSON.stringify(userArray);
-            localStorage.setItem(`Users`, JSONData);
-            navigate('/authorize');
+            if(!emailValue || !emailPattern.test(emailValue)) {
+                setEmailIsValid(false);
+            } else {
+                userObj.email = emailValue;
+                setEmailIsValid(true);
+
+                if(!passwordValue || passwordValue !== confirmPassword) {
+                    setPasswordError('Введите корректный пароль!');
+                } else {
+                    userObj.password = passwordValue;
+                    setPasswordError('');
+        
+                    userArray.push(userObj);
+                    const JSONData = JSON.stringify(userArray);
+                    localStorage.setItem(`Users`, JSONData);
+                    navigate('/authorize');
+                }
+            }
         }
     }
 
