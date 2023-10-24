@@ -8,7 +8,7 @@ import Favor from '../../assets/singleFilmAssets/Favor.svg'
 import Share from '../../assets/singleFilmAssets/Share.svg'
 import { Recomendations } from '../../components/Recomendations/Recomendations';
 import { Film } from '../../api/getFilms';
-import FilmItem from '../../components/FilmItem/FIlmItem';
+import FilmItem from '../../components/FilmItem/FilmItem';
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 import { useUserContext } from '../../context/UserContext/UserContext';
 import { User } from '../SignUpPage/SignUpPage';
