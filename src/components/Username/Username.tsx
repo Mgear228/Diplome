@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import profileRegister from '../../assets/usernameAssets/profilePicture.svg'
 import { useNavigate } from 'react-router-dom';
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
-import { user } from '../../pages/SignUpPage/SignUpPage';
+import { User } from '../../pages/SignUpPage/SignUpPage';
 import { useUserContext } from '../../context/UserContext/UserContext';
 
 type Props = {

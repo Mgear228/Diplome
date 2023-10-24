@@ -4,7 +4,7 @@ import styles from './FavouritesPage.module.css';
 import { useState, useEffect } from 'react';
 import { NoFavourites } from '../../components/NoFavourites/NoFavourites';
 import { Film } from '../../api/getFilms';
-import FilmItem from '../../components/FilmItem/FIlmItem';
+import FilmItem from '../../components/FilmItem/FilmItem';
 import { useUserContext } from '../../context/UserContext/UserContext';
 import { User } from '../SignUpPage/SignUpPage';
 
