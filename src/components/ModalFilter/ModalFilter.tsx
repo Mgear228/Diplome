@@ -70,7 +70,7 @@ export function ModalFilter({onClick, state, setState} : Props) {
                     <Input type='text' value={inputFrom} onChange={handleChangeFrom} classname={styles.nameInput} placeholder='Enter the year'/>
                 </div>
                 <div className={styles.countryBlock}>Country
-                    <Dropdown reset={clear} placeholder='Select country' nameOfElems={['Belarus', 'Russia', 'Palestine']}/>
+                    <Dropdown reset={clear} placeholder='Select country' nameOfElems={['Belarus', 'Russia', 'China']}/>
                 </div>
                 <div className={styles.clearShowBtns}>
                     <button className={styles.endBtn} onClick={resetFilters}>Clear filter</button>
