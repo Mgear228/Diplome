@@ -11,11 +11,25 @@ import { User } from '../SignUpPage/SignUpPage';
 export function FavouritesPage() {
     const [inputValue, setInputValue] = useState<string>('');
     const navigate = useNavigate();
+    const [height, setHeight] = useState<number>(1024);
     const [films, setFilms] = useState<Film[]>([]);
     const {user} = useUserContext();
     
-    document.documentElement.style.height = 1024 + 'px';
-    document.body.style.height = 1024 + 'px';
+    const newContentHeight = height;
+
+    useEffect(() => {
+        document.addEventListener('scroll', srclHandler);
+        document.documentElement.style.height = newContentHeight + 'px';
+        document.body.style.height = newContentHeight + 'px';
+        return function() {
+            document.removeEventListener('scroll', srclHandler);
+        }
+    }, [height]);
+
+    const srclHandler = (e: Event) => {
+        const target = e.target as Document;
+        setHeight(target.documentElement.scrollHeight);
+    }
     
     useEffect(() => {
         if(user) {

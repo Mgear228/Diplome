@@ -3,3 +3,8 @@
     flex-wrap: wrap;
     margin-top: 56px;
 }
+@media (max-width: 375px) {
+    .trendsArea {
+        margin-left: 40px;
+    }
+}
