@@ -7,11 +7,11 @@ import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 import { user } from '../../pages/SignUpPage/SignUpPage';
 import { useUserContext } from '../../context/UserContext/UserContext';
 
-type props = {
-    user: user;
+type Props = {
+    user: User;
 };
 
-export function Username({ user } : props) {
+export function Username({ user } : Props) {
     const {changeUser} = useUserContext();
     const {theme} = useThemeContext();
     const navigate = useNavigate();
@@ -48,7 +48,7 @@ export function Username({ user } : props) {
 
     useEffect(() => {
         for(const key in user) {
-            const value = user[key as keyof user];
+            const value = user[key as keyof User];
             if(value !== '' && !(Array.isArray(value) && value.length === 0)) {
                 setIsUser(false);
                 return;
@@ -93,8 +93,8 @@ export function Username({ user } : props) {
                 <div className={styles.userShort}>{initialsString}</div>
                 <div className={`${styles.name} ${theme === 'white'? styles.nameWhite : ''}`}>{user.name}</div>
             </div>}
-            {isUser? null : <div className={styles.arrowGroup}>
-                <img className={styles.arrow} src={arrow} onClick={handleClick}/>
+            {isUser? null : <div className={styles.arrowGroup} onClick={handleClick}>
+                <img className={styles.arrow} src={arrow}/>
                 {mounted && <div className={`${styles.userDropDown} ${clicked? styles.active : styles.inactive}`}>
                     <div className={styles.dropDownElem} onClick={handleExit}>Exit</div>
                 </div>}

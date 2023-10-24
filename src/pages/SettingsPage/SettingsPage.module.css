@@ -1,4 +1,5 @@
 .settingsBlocks {
+    position: relative;
     width: 75%;
     margin-top: 36px;
     color: white;
@@ -6,6 +7,37 @@
     font-weight: 400;
 }
 .settingsBlocksWhite {
+    color: black;
+}
+.blockedSettingsBlocks::before {
+    content: '';
+    z-index: 1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    opacity: 0.5;
+    border-radius: 10px;
+}
+.lock {
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    top: 25%;
+    left: 43%;
+    z-index: 1;
+}
+.lockWhite {
+    filter: brightness(0%);
+}
+.lockText {
+    position: absolute;
+    color: gray;
+    z-index: 1;
+    top: 80%;
+    left: 42%;
+}
+.lockTextWhite {
     color: black;
 }
 .profileBlock {
@@ -167,5 +199,13 @@
 @media (max-width: 768px) {
     .settingsBlocks {
         width: 95%;
+    }
+}
+@media (max-width: 500px) {
+    .lock {
+        left: 30%;
+    }
+    .lockText {
+        left: 25%;
     }
 }

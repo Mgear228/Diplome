@@ -43,14 +43,10 @@ html, body {
     background-color: rgb(41, 41, 41);
 }
 .feedbackBtnFavorActive {
+    pointer-events: none;
     background-color: rgba(123, 97, 255, 1);
 }
-.feedbackBtnFavorActive:hover {
-    background-color: rgba(123, 97, 255, 1);
-}
-.feedbackBtnFavorActive:active {
-    background-color: rgba(123, 97, 255, 1);
-}
+
 .feedbackBtnShare {
     user-select: none;
     width: 50%;
@@ -160,23 +156,66 @@ li span {
     width: 50%;
 }
 
+
+@media (max-width: 1200px) {
+    .filmDescPart {
+        width: 60%;
+    }
+    .miscDesc li{
+        width: 300px;
+    }
+    .filmDesc {
+        width: 90%;
+    }
+    .filmType {
+        width: 90%;
+    }
+    .filmTitle {
+        width: 90%;
+    }
+}
+@media (max-width: 930px) {
+    .filmPosterPart {
+        width: 200px;
+    }
+    .feedback {
+        width: 100%;
+    }
+    .filmDescPart {
+        width: 50%;
+    }
+}
 @media (max-width: 768px) {
     .miscDescPart {
         margin-left: 5px;
         width: 100%;
     }
+    .filmDescPart {
+        margin-left: 20px;
+    }
 }
-@media (max-width: 320px) {
+@media (max-width: 550px) {
+    .miscDesc li {
+        width: 280px;
+    }
+}
+@media (max-width: 525px) {
     .filmMain {
         flex-wrap: wrap;
     }
     .filmPosterPart {
+        width: 266px;
         height: 50%;
     }
     .filmDescPart {
         width: 100%;
     }
+}
+@media (max-width: 375px) {
+    .miscDescPart {
+        width: 90%;
+    }
     .miscDesc li {
-        width: 280px;
+        width: 270px;
     }
 }

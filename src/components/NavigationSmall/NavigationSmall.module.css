@@ -28,19 +28,6 @@
     width: 24px;
     height: 24px;
 }
-.settingsDeactive {
-    background-color: rgb(35, 35, 35);
-}
-.settingsDeactive:hover {
-    background-color: rgb(35, 35, 35);
-}
-.settingsDeactive:active {
-    background-color: rgb(35, 35, 35);
-}
-.settingsDeactiveAlert {
-    position: absolute;
-    color: red;
-}
 .lock {
     margin-left: 30px;
     width: 25px;

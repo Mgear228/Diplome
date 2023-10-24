@@ -4,7 +4,7 @@ import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 import allRightsReserved from '../../assets/navigationAssets/© All Rights Reserved.svg'
 import { InputValidation } from '../../components/InputValidation/InputValidation';
 import { useState } from 'react';
-import { user } from '../SignUpPage/SignUpPage';
+import { User } from '../SignUpPage/SignUpPage';
 import { useNavigate } from 'react-router-dom';
 
 export function SupportPage() {
@@ -20,7 +20,7 @@ export function SupportPage() {
     const handleSubmit = () => {
         const data = localStorage.getItem(email);
         if(data) {
-            const parsedData: user = JSON.parse(data);
+            const parsedData: User = JSON.parse(data);
             if(!email || email !== parsedData.email) {
                 setIsEmailValid(false);
             } else {

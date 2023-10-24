@@ -6,8 +6,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../context/UserContext/UserContext';
 import { Password } from '../../components/Password/Password';
-import { user } from '../SignUpPage/SignUpPage';
+import { User } from '../SignUpPage/SignUpPage';
 import { InputValidation } from '../../components/InputValidation/InputValidation';
+import lock from '../../assets/navigationAssets/lockedSettings.svg'
 
 export function SettingsPage() {
     const {theme, changeTheme} = useThemeContext();
@@ -16,6 +17,8 @@ export function SettingsPage() {
     const {user, changeUser} = useUserContext(); 
 
     const [nameValue, setNameValue] = useState<string>(user.name);
+    const [nameValueError, setNameValueError] = useState<string>('');
+
     const [emailValue, setEmailValue] = useState<string>(user.email);
     const [isEmailValid, setIsEmailValid] = useState<boolean>(true);
 
@@ -33,13 +36,25 @@ export function SettingsPage() {
     document.documentElement.style.height = 1024 + 'px';
     document.body.style.height = 1024 + 'px';
 
+    const [isUser, setIsUser] = useState<boolean>(false);
+    useEffect(() => {
+        for(const key in user) {
+            const value = user[key as keyof User];
+            if(value !== '' && !(Array.isArray(value) && value.length === 0)) {
+                setIsUser(false);
+                return;
+            }
+        }
+        setIsUser(true);
+    }, [user])
+
     useEffect(() => {
         if(theme === 'white') {
             setActive(true);
         }
     }, [])
 
-    const handleName = (e: any) => {
+    const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setNameValue(value);
     }
@@ -81,32 +96,38 @@ export function SettingsPage() {
             password: passwordReset,
             films: user.films,
         }
-        if(!emailValue || !emailPattern.test(emailValue)) {
-            setIsEmailValid(false);
-        } else if(data) {
-            setIsEmailValid(true);
-            if(!passwordValue || passwordValue !== user.password) {
-                setPasswordError('Введите корректный пароль!');
-            } else {
-                setPasswordError('');
-                if(!passwordReset) {
-                    setPasswordResetError('Введите пароль!');
+        if(!nameValue || nameValue.length < 2) {
+            setNameValueError('Введите корректное имя!');
+        } else {
+            setNameValueError('');
+            if(!emailValue || !emailPattern.test(emailValue)) {
+                setIsEmailValid(false);
+            } else if(data) {
+                setIsEmailValid(true);
+                if(!passwordValue || passwordValue !== user.password) {
+                    setPasswordError('Введите корректный пароль!');
                 } else {
-                    setPasswordResetError('');
-                    if(!passwordConfirm || passwordConfirm != passwordReset) {
-                        setPasswordConfirmError('Введите корректный пароль!');
+                    setPasswordError('');
+                    if(!passwordReset) {
+                        setPasswordResetError('Введите пароль!');
                     } else {
-                        setPasswordConfirmError('');
-                        const parsedData: user = JSON.parse(data);
-                        if(JSON.stringify(parsedData) === JSON.stringify(user)) {
-                            parsedData.name = nameValue;
-                            parsedData.email = emailValue;
-                            parsedData.password = passwordReset;
-                            parsedData.films = user.films;
+                        setPasswordResetError('');
+                        if(!passwordConfirm || passwordConfirm != passwordReset) {
+                            setPasswordConfirmError('Введите корректный пароль!');
+                        } else {
+                            setPasswordConfirmError('');
+                            const parsedData: User = JSON.parse(data);
+                            if(JSON.stringify(parsedData) === JSON.stringify(user)) {
+                                parsedData.name = nameValue;
+                                parsedData.email = emailValue;
+                                parsedData.password = passwordReset;
+                                parsedData.films = user.films;
+                            }
+                            const stringData = JSON.stringify(parsedData);
+                            localStorage.setItem(emailValue, stringData);
+                            localStorage.removeItem(user.email);
+                            changeUser(userObj);
                         }
-                        const stringData = JSON.stringify(parsedData);
-                        localStorage.setItem(user.email, stringData);
-                        changeUser(userObj);
                     }
                 }
             }
@@ -115,17 +136,18 @@ export function SettingsPage() {
 
     return (
         <Template firstState={4} change={handleSearchInputChange} confirm={handleSearchInputConfirm}>
-            <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''}`}>Profile
+            <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''} ${isUser? styles.blockedSettingsBlocks : ''}`}>Profile
                 <div className={`${styles.profileBlock} ${theme === 'white'? styles.profileBlockWhite : ''}`}>
                     <div className={styles.inputBlock}>Name
-                        <Input onChange={handleName} value={nameValue} type='text' classname={styles.longInput} placeholder='Enter name'/>
+                        <Input error={nameValueError} onChange={handleName} value={nameValue} type='text' classname={styles.longInput} placeholder='Enter name'/>
                     </div>
                     <div className={styles.inputBlock}>Email
                         <InputValidation email={emailValue} callback={setEmailValue} isValid={isEmailValid} placeholder='Enter email'/>
                     </div>
                 </div>
+                {isUser? <div><img className={`${styles.lock} ${theme === 'white'? styles.lockWhite : ''}`} src={lock} alt='lock'/><div className={`${styles.lockText} ${theme === 'white'? styles.lockTextWhite : ''}`}>Authorize to use</div></div> : ''}
             </div>
-            <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''}`}>Password
+            <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''} ${isUser? styles.blockedSettingsBlocks : ''}`}>Password
                 <div className={`${styles.passwordBlock} ${theme === 'white'? styles.passwordBlockWhite : ''}`}>
                     <div className={styles.passwordLine}>
                         <div className={styles.inputBlock}>Password
@@ -141,6 +163,7 @@ export function SettingsPage() {
                         </div>
                     </div>
                 </div>
+                {isUser? <div><img className={`${styles.lock} ${theme === 'white'? styles.lockWhite : ''}`} src={lock} alt='lock'/><div className={`${styles.lockText} ${theme === 'white'? styles.lockTextWhite : ''}`}>Authorize to use</div></div> : ''}
             </div>
             <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''}`}>Color mode
                 <div className={`${styles.colorBlock} ${theme === 'white'? styles.colorBlockWhite : ''}`}>

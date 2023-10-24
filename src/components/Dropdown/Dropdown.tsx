@@ -3,7 +3,7 @@ import arrow from '../../assets/usernameAssets/Vector 1 (Stroke).svg'
 import { useEffect, useState } from 'react'
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 
-type props = {
+type Props = {
     placeholder: string;
     classname?: string;
     nameOfElems: string[];
@@ -11,7 +11,7 @@ type props = {
     callback?: React.Dispatch<React.SetStateAction<string>> 
 }
 
-export function Dropdown({placeholder, nameOfElems, classname, reset, callback} : props) {
+export function Dropdown({placeholder, nameOfElems, classname, reset, callback} : Props) {
     const [clicked, setClicked] = useState(false);
     const [mounted, setMounted] = useState(false);
     const [selected, setSelected] = useState<string>(placeholder);

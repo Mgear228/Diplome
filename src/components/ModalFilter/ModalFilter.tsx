@@ -6,13 +6,13 @@ import { Dropdown } from '../Dropdown/Dropdown';
 import { useSearchParams } from 'react-router-dom';
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 
-type props = {
+type Props = {
     onClick: () => void;
     state: boolean;
     setState?: (bool: boolean) => void;
 }
 
-export function ModalFilter({onClick, state, setState} : props) {
+export function ModalFilter({onClick, state, setState} : Props) {
     const [searchParams, setSearchParams] = useSearchParams();
     const {theme} = useThemeContext();
     const [inputValue, setInputValue] = useState<string>('');
@@ -27,23 +27,25 @@ export function ModalFilter({onClick, state, setState} : props) {
         setInputFrom('');
     }
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const currValue = e.target.value;
         setInputValue(currValue);
     }
-    const handleChangeFrom = (e: any) => {
+    const handleChangeFrom = (e: React.ChangeEvent<HTMLInputElement>) => {
         const currValue = e.target.value;
         setInputFrom(currValue);
     }
 
     const confirmResults = () => {
-        setSearchParams((prevParams: URLSearchParams) => {
-            if(inputValue) prevParams.set("s", inputValue);
-            prevParams.set("page", "1");
-            if(dropdownValue) prevParams.set("type", dropdownValue);
-            if(inputFrom) prevParams.set("y", inputFrom);
-            return prevParams;
-        });
+        if(searchParams){
+            setSearchParams((prevParams: URLSearchParams) => {
+                if(inputValue) prevParams.set("s", inputValue);
+                prevParams.set("page", "1");
+                if(dropdownValue) prevParams.set("type", dropdownValue);
+                if(inputFrom) prevParams.set("y", inputFrom);
+                return prevParams;
+            });
+        }
 
         if(!setState) return;
         if(!inputValue && !dropdownValue && !inputFrom) {

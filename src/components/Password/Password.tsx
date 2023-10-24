@@ -3,14 +3,14 @@ import styles from './Password.module.css';
 import { Input } from '../Input/Input';
 import passwordEye from '../../assets/authorizeAssets/passwordEye.svg'
 
-type props = {
+type Props = {
     placeholder: string;
     value: string;
     onChange: React.Dispatch<React.SetStateAction<string>>;
     error?: string;
 }
 
-export function Password({value, onChange, placeholder, error} : props) {
+export function Password({value, onChange, placeholder, error} : Props) {
     const [showPassword, setShowPassword] = useState(false);
 
     const handleChange = (e : React.ChangeEvent<HTMLInputElement>) => {

@@ -49,7 +49,7 @@
     filter: brightness(80%);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 930px) {
     .mainContainer {
         width: 85%;
     }

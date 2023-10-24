@@ -7,13 +7,13 @@ import { useState } from 'react';
 import { InputValidation } from '../../components/InputValidation/InputValidation';
 import { Password } from '../../components/Password/Password';
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
-import { film } from '../../api/getFilms';
+import { Film } from '../../api/getFilms';
 
-export type user = {
+export type User = {
     name: string;
     email: string;
     password: string;
-    films: film[];
+    films: Film[];
 }
 
 export function SignUpPage() {
@@ -30,14 +30,14 @@ export function SignUpPage() {
     const navigate = useNavigate();
     const {theme} = useThemeContext();
 
-    const userObj: user = {
+    const userObj: User = {
         name: '',
         email: '',
         password: '',
         films: [],
     }
 
-    const handleNameChange = (e: any) => {
+    const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setNameValue(value);
     }

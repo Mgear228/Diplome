@@ -2,11 +2,11 @@ import { MobileNavigation } from '../MobileNavigation/MobileNavigation';
 import styles from './BurgerMenu.module.css';
 import { useState } from 'react';
 
-type props = {
+type Props = {
     initState: number;
 }
 
-export function BurgerMenu({initState} : props) {
+export function BurgerMenu({initState} : Props) {
     const [clicked, setClicked] = useState<boolean>(false);
 
     const handleClick = () => {

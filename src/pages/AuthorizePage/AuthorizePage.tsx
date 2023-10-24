@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { Password } from '../../components/Password/Password';
 import { InputValidation } from '../../components/InputValidation/InputValidation';
-import { user } from '../SignUpPage/SignUpPage';
+import { User } from '../SignUpPage/SignUpPage';
 import { useUserContext } from '../../context/UserContext/UserContext';
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 
@@ -25,7 +25,7 @@ export function AuthorizePage() {
             setIsEmailValid(false);
         } else if(data) {
             setIsEmailValid(true);
-            const parsedData: user = JSON.parse(data);
+            const parsedData: User = JSON.parse(data);
             if((email === parsedData.email) && (password === parsedData.password)) {
                 setErrorPassword('');
                 changeUser(parsedData);

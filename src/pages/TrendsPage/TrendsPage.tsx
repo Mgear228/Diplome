@@ -3,11 +3,11 @@ import { Template } from '../../components/Template/Template';
 import styles from './TrendsPage.module.css';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { film } from '../../api/getFilms';
+import { Film } from '../../api/getFilms';
 import FilmItem from '../../components/FilmItem/FilmItem';
 
 export function TrendsPage() {
-    const [films, setFilms] = useState<film[]>([]);
+    const [films, setFilms] = useState<Film[]>([]);
     const [inputValue, setInputValue] = useState<string>('');
     const navigate = useNavigate();
 

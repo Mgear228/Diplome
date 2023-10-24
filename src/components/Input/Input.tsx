@@ -1,7 +1,7 @@
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 import styles from './Input.module.css';
 
-type props = {
+type Props = {
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     placeholder?: string;
@@ -11,7 +11,7 @@ type props = {
     type: 'text' | 'password';
 }
 
-export function Input({onKeyDown, onChange, placeholder, classname, value, error, type} : props) {
+export function Input({onKeyDown, onChange, placeholder, classname, value, error, type} : Props) {
     const {theme} = useThemeContext();
 
     return (<div className={`${styles.inputBlock} ${classname}`}>

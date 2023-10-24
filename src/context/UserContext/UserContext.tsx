@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react"
-import { user } from "../../pages/SignUpPage/SignUpPage";
+import { User } from "../../pages/SignUpPage/SignUpPage";
 
 type UserContextValueType = {
-    user: user;
-    changeUser: (theme: user) => void;
+    user: User;
+    changeUser: (theme: User) => void;
 };
 
 const defaultContextTypeValue: UserContextValueType = {
@@ -17,8 +17,8 @@ const defaultContextTypeValue: UserContextValueType = {
 };
 
 export const useInitUserContext = () => {
-    const [user, setUser] = useState<user>({name: '', email: '', password: '', films: []});
-    const changeUser = (newUser: user) => {
+    const [user, setUser] = useState<User>({name: '', email: '', password: '', films: []});
+    const changeUser = (newUser: User) => {
         setUser(() => newUser);
     };
     return {

@@ -1,17 +1,17 @@
 import { Input } from "../Input/Input";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, FormEvent } from 'react';
 
-type props = {
+type Props = {
     isValid: boolean;
     callback: React.Dispatch<React.SetStateAction<string>>;
     email: string;
     placeholder: string;
 };
 
-export function InputValidation({isValid, callback, email, placeholder} : props) {
+export function InputValidation({isValid, callback, email, placeholder} : Props) {
     const [emailError, setEmailError] = useState<string>('');
 
-    const handleChange = (e: any) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {value} = e.target;
         callback?.(value);
     };
@@ -24,7 +24,7 @@ export function InputValidation({isValid, callback, email, placeholder} : props)
         }
     }, [isValid]);
 
-    const handleSubmit = (e: any) => {
+    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
     }
 

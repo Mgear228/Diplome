@@ -2,15 +2,15 @@ import { useUserContext } from '../../context/UserContext/UserContext';
 import styles from './MobileNavigation.module.css';
 import { NavigationSmall } from '../NavigationSmall/NavigationSmall';
 import { useEffect, useState } from 'react';
-import { user } from '../../pages/SignUpPage/SignUpPage';
+import { User } from '../../pages/SignUpPage/SignUpPage';
 import { useNavigate } from 'react-router-dom';
 
-type props = {
+type Props = {
     state: boolean;
     initState: number;
 }
 
-export function MobileNavigation({state, initState} : props) {
+export function MobileNavigation({state, initState} : Props) {
     const navigate = useNavigate();
     const {user, changeUser} = useUserContext();
     const words = user.name.split(' ');
@@ -20,7 +20,7 @@ export function MobileNavigation({state, initState} : props) {
 
     useEffect(() => {
         for(const key in user) {
-            const value = user[key as keyof user];
+            const value = user[key as keyof User];
             if(value !== '' && !(Array.isArray(value) && value.length === 0)) {
                 setIsUser(false);
                 return;

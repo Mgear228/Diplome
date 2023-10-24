@@ -4,7 +4,7 @@ import { NavigationComponent } from '../NavigationComponent/NavigationComponent'
 import styles from './Template.module.css'
 import { ReactNode } from 'react';
 
-type props = {
+type Props = {
     children?: ReactNode;
     change?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     confirm?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
@@ -12,7 +12,7 @@ type props = {
     setState?: (bool: boolean) => void
 }
 
-export function Template({children, change, confirm, firstState, setState} : props) {
+export function Template({children, change, confirm, firstState, setState} : Props) {
     const {theme} = useThemeContext();
 
     return (

@@ -5,11 +5,11 @@ import label from '../../assets/navigationAssets/© All Rights Reserved.svg'
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext'
 import { NavigationSmall } from '../NavigationSmall/NavigationSmall'
 
-type props = {
+type Props = {
     initState: number;
 };
 
-export function NavigationComponent({initState} : props) {
+export function NavigationComponent({initState} : Props) {
     const {theme} = useThemeContext();
     
     return (

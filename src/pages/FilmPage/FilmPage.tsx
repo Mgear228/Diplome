@@ -7,13 +7,13 @@ import ImdbRate from '../../assets/singleFilmAssets/Imdb.svg'
 import Favor from '../../assets/singleFilmAssets/Favor.svg'
 import Share from '../../assets/singleFilmAssets/Share.svg'
 import { Recomendations } from '../../components/Recomendations/Recomendations';
-import { film } from '../../api/getFilms';
-import FilmItem from '../../components/FilmItem/FilmItem';
+import { Film } from '../../api/getFilms';
+import FilmItem from '../../components/FilmItem/FIlmItem';
 import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
 import { useUserContext } from '../../context/UserContext/UserContext';
-import { user } from '../SignUpPage/SignUpPage';
+import { User } from '../SignUpPage/SignUpPage';
 
-type singleFilm = {
+type SingleFilm = {
     Title: string;
     Type: string;
     Poster: string;
@@ -31,16 +31,9 @@ type singleFilm = {
     Runtime: string;
 }
 
-const userObj = {
-    name: '',
-    email: '',
-    password: '',
-    films: [],
-}
-
 export function FilmPage() {
-    const [film, setFilm] = useState<singleFilm>();
-    const [films, setFilms] = useState<film[]>([]);
+    const [film, setFilm] = useState<SingleFilm>();
+    const [films, setFilms] = useState<Film[]>([]);
     const [inputValue, setInputValue] = useState<string>('');
     const [active, setActive] = useState<boolean>();
     const navigate = useNavigate();
@@ -49,12 +42,12 @@ export function FilmPage() {
     const {theme} = useThemeContext();
     const [isUser, setIsUser] = useState<boolean>(false);
     
-    document.documentElement.style.height = 1200 + 'px';
-    document.body.style.height = 1200 + 'px';
+    document.documentElement.style.height = 2100 + 'px';
+    document.body.style.height = 2100 + 'px';
 
     useEffect(() => {
         for(const key in user) {
-            const value = user[key as keyof user];
+            const value = user[key as keyof User];
             if(value !== '' && !(Array.isArray(value) && value.length === 0)) {
                 setIsUser(false);
                 return;
@@ -64,10 +57,14 @@ export function FilmPage() {
     }, [user])
 
     useEffect(() => {
-        const data = localStorage.getItem(`${film?.Title}`);
+        const data = localStorage.getItem(user.email);
         if(data) { 
-            const parsedData: film = JSON.parse(data);
-            if(parsedData.Title === film?.Title) setActive(true);
+            const parsedData: User = JSON.parse(data);
+            parsedData.films.forEach((elem) => {
+                if(elem.Title === film?.Title) {
+                    setActive(true);
+                }
+            });
         }
     }, [film])
 
@@ -119,7 +116,9 @@ export function FilmPage() {
                 Poster: film.Poster,
                 imdbID: film.imdbID,
             };
-            user.films.push(data);        
+            console.log(user.films);
+            
+            user.films.push(data);   
             const stringData = JSON.stringify(user);
             localStorage.setItem(user.email, stringData);
         }

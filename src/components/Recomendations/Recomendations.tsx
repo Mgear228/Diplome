@@ -2,13 +2,13 @@ import styles from './Recomendations.module.css'
 import { ReactNode, useState } from 'react';
 import pointer from '../../assets/filmPageAssets/pointer.svg'
 
-type props = {
+type Props = {
     children: ReactNode;
     length: number;
 }
 const PAGE_WIDTH = 210;
 
-export function Recomendations({children, length} : props) {
+export function Recomendations({children, length} : Props) {
     const [offset, setOffset] = useState(0);
 
     const handleLeftPointerClick = () => {

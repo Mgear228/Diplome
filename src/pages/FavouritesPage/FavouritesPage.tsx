@@ -3,15 +3,15 @@ import { Template } from '../../components/Template/Template';
 import styles from './FavouritesPage.module.css';
 import { useState, useEffect } from 'react';
 import { NoFavourites } from '../../components/NoFavourites/NoFavourites';
-import { film } from '../../api/getFilms';
-import FilmItem from '../../components/FilmItem/FilmItem';
+import { Film } from '../../api/getFilms';
+import FilmItem from '../../components/FilmItem/FIlmItem';
 import { useUserContext } from '../../context/UserContext/UserContext';
-import { user } from '../SignUpPage/SignUpPage';
+import { User } from '../SignUpPage/SignUpPage';
 
 export function FavouritesPage() {
     const [inputValue, setInputValue] = useState<string>('');
     const navigate = useNavigate();
-    const [films, setFilms] = useState<film[]>([]);
+    const [films, setFilms] = useState<Film[]>([]);
     const {user} = useUserContext();
     
     document.documentElement.style.height = 1024 + 'px';
@@ -21,7 +21,7 @@ export function FavouritesPage() {
         if(user) {
             const data = localStorage.getItem(user.email);
             if(data) {
-                const parsedData: user = JSON.parse(data);
+                const parsedData: User = JSON.parse(data);
                 setFilms((prevFilms) => [...prevFilms, ...parsedData.films]);
             }
         }

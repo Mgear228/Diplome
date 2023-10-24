@@ -9,14 +9,14 @@ import { useMediaQuery } from 'react-responsive';
 import { BurgerMenu } from '../BurgerMenu/BurgerMenu';
 import { useUserContext } from '../../context/UserContext/UserContext';
 
-type props = {
+type Props = {
     onKeyDown?: (e: React.KeyboardEvent<HTMLInputElement>) => void;
     onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     setState?: (bool: boolean) => void;
     initState: number;
 }
 
-export function FiltrationComponent({onKeyDown, onChange, setState, initState} : props) {
+export function FiltrationComponent({onKeyDown, onChange, setState, initState} : Props) {
     const [clicked, setClicked] = useState(false);
     const [mounted, setMounted] = useState(false);
     const {user} = useUserContext();

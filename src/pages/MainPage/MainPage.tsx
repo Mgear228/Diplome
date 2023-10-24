@@ -1,21 +1,23 @@
 import { useSearchParams } from 'react-router-dom';
 import styles from './MainPage.module.css';
 import { useEffect, useState } from "react";
-import FIlmItem from '../../components/FilmItem/FilmItem';
-import { film, getFilms } from '../../api/getFilms';
+import { Film, getFilms } from '../../api/getFilms';
 import { Template } from '../../components/Template/Template';
 import { useMediaQuery } from 'react-responsive';
+import { useThemeContext } from '../../context/ThemeContext/ThemeContext';
+import FilmItem from '../../components/FilmItem/FilmItem';
 
 export function MainPage() {
-    const [films, setFilms] = useState<film[]>([]);
+    const [films, setFilms] = useState<Film[]>([]);
     const [searchParams, setSearchParams] = useSearchParams();
-    const [inputValue, setInputValue] = useState('');
-    const [currentPage, setCurrentPage] = useState(1);
-    const [fetching, setFetching] = useState(true);
-    const [prevParams, setPrevParams] = useState('');
-    const [height, setHeight] = useState(1024);
-    const [spinner, setSpinner] = useState(false);
+    const [inputValue, setInputValue] = useState<string>('');
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [fetching, setFetching] = useState<boolean>(true);
+    const [prevParams, setPrevParams] = useState<string>('');
+    const [height, setHeight] = useState<number>(1024);
+    const [spinner, setSpinner] = useState<boolean>(false);
     const isMobile = useMediaQuery({ maxWidth: 768 });
+    const {theme} = useThemeContext()
 
     const newContentHeight = height;
 
@@ -28,8 +30,9 @@ export function MainPage() {
         }
     }, [height]);
 
-    const srclHandler = (e: any) => {
-        setHeight(e.target.documentElement.scrollHeight);
+    const srclHandler = (e: Event) => {
+        const target = e.target as Document;
+        setHeight(target.documentElement.scrollHeight);
     }
 
     useEffect(() => {
@@ -57,7 +60,7 @@ export function MainPage() {
         }
     }, [searchParams, fetching])
 
-    const handleScroll = (e : any) => {
+    const handleScroll = () => {
         setPrevParams(searchParams.toString());
         setFetching(true);
         setSpinner(true);
@@ -89,8 +92,8 @@ export function MainPage() {
         <Template firstState={1} change={handleSearchInputChange} confirm={handleSearchInputConfirm} setState={setFetching}>
             <div className={styles.filmArea}>
                 {films !== undefined ? films.map((film) => (
-                    <FIlmItem key={`${film.Title}-${film.Poster}`} film={film} />
-                )) : <div className={styles.error}>Фильмы не найдены!</div>}
+                    <FilmItem key={`${film.Title}-${film.Poster}`} film={film} />
+                )) : <div className={`${styles.error} ${theme === 'white'? styles.errorWhite : ''}`}>Фильмы не найдены!</div>}
                 <button onClick={handleScroll} className={styles.resetBtn}>Show more{spinner && <div className={styles.spinner}></div>}</button>
             </div>
         </Template>
