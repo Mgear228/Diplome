@@ -136,19 +136,19 @@ export function SettingsPage() {
 
     return (
         <Template firstState={4} change={handleSearchInputChange} confirm={handleSearchInputConfirm}>
-            <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''} ${isUser? styles.blockedSettingsBlocks : ''}`}>Profile
-                <div className={`${styles.profileBlock} ${theme === 'white'? styles.profileBlockWhite : ''}`}>
+            <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''}`}>Profile
+                <div className={`${styles.profileBlock} ${theme === 'white'? styles.profileBlockWhite : ''} ${isUser? styles.blockedProfileBlocks : ''}`}>
                     <div className={styles.inputBlock}>Name
                         <Input error={nameValueError} onChange={handleName} value={nameValue} type='text' classname={styles.longInput} placeholder='Enter name'/>
                     </div>
                     <div className={styles.inputBlock}>Email
                         <InputValidation email={emailValue} callback={setEmailValue} isValid={isEmailValid} placeholder='Enter email'/>
                     </div>
+                    {isUser? <div className={styles.locked}><img className={`${styles.lock} ${theme === 'white'? styles.lockWhite : ''}`} src={lock} alt='lock'/><div className={`${styles.lockText} ${theme === 'white'? styles.lockTextWhite : ''}`}>Authorize to use</div></div> : ''}
                 </div>
-                {isUser? <div><img className={`${styles.lock} ${theme === 'white'? styles.lockWhite : ''}`} src={lock} alt='lock'/><div className={`${styles.lockText} ${theme === 'white'? styles.lockTextWhite : ''}`}>Authorize to use</div></div> : ''}
             </div>
-            <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''} ${isUser? styles.blockedSettingsBlocks : ''}`}>Password
-                <div className={`${styles.passwordBlock} ${theme === 'white'? styles.passwordBlockWhite : ''}`}>
+            <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''}`}>Password
+                <div className={`${styles.passwordBlock} ${theme === 'white'? styles.passwordBlockWhite : ''} ${isUser? styles.blockedProfileBlocks : ''}`}>
                     <div className={styles.passwordLine}>
                         <div className={styles.inputBlock}>Password
                             <Password error={passwordError} value={passwordValue} onChange={setPasswordValue} placeholder='Enter password'/>
@@ -162,8 +162,8 @@ export function SettingsPage() {
                             <Password error={passwordConfirmError} value={passwordConfirm} onChange={setPasswordConfirm} placeholder='Confirm password'/>
                         </div>
                     </div>
+                    {isUser? <div className={styles.locked}><img className={`${styles.lock} ${theme === 'white'? styles.lockWhite : ''}`} src={lock} alt='lock'/><div className={`${styles.lockText} ${theme === 'white'? styles.lockTextWhite : ''}`}>Authorize to use</div></div> : ''}
                 </div>
-                {isUser? <div><img className={`${styles.lock} ${theme === 'white'? styles.lockWhite : ''}`} src={lock} alt='lock'/><div className={`${styles.lockText} ${theme === 'white'? styles.lockTextWhite : ''}`}>Authorize to use</div></div> : ''}
             </div>
             <div className={`${styles.settingsBlocks} ${theme === 'white'? styles.settingsBlocksWhite : ''}`}>Color mode
                 <div className={`${styles.colorBlock} ${theme === 'white'? styles.colorBlockWhite : ''}`}>
