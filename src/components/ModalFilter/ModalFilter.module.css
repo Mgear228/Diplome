@@ -1,0 +1,181 @@
+.main {
+    position: fixed;
+    top: 0px;
+    width: 500px;
+    height: 100%;
+    background-color: rgba(36, 36, 38, 1);
+    border-radius: 10px 0 0 10px;
+    right: -100px;
+    transform: translateX(100%);
+    z-index: 2;
+}
+.mainWhite {
+  background-color: gray;
+}
+.bgFilter {
+    position: fixed;
+    background-color: black;
+    opacity: 0.6;
+    top: 0;
+    left: 0;
+    width: 200vh;
+    height: 100vh;
+    z-index: 1;
+}
+@keyframes slideIn {
+    from {
+      right: 0;
+      transform: translateX(100%);
+    }
+    to {
+      right: 0;
+      transform: translateX(0);
+    }
+}
+.mainOpen {
+    animation: slideIn 0.5s forwards;;
+}
+@keyframes slideOut {
+    from {
+      right: 0;
+      transform: translateX(0);
+    }
+    to {
+      right: 0;
+      transform: translateX(100%);
+    }
+}
+.mainClose {
+    animation: slideOut 0.5s forwards;
+}
+.name {
+  user-select: none;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 28px;
+    margin-left: 48px;
+    width: 438px;
+    height: 36px;
+    color: white;
+    font-size: 24px;
+    font-weight: 600;
+}
+.close {
+    cursor: pointer;
+}
+.filmName {
+  user-select: none;
+  width: 400px;
+  height: 128px;
+  border-top: 1px solid rgba(50, 53, 55, 1);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  margin-left: 48px;
+  margin-top: 48px;
+}
+.filmName .nameInput {
+  margin-top: 5px;
+  width: 100%;
+}
+.fromToBlock .nameInput {
+  margin-top: 5px;
+  width: 100%;
+}
+.genre {
+  user-select: none;
+  color: white;
+  width: 400px;
+  margin-left: 48px;
+  margin-top: 20px;
+}
+.fromToBlock {
+  user-select: none;
+  color: white;
+  width: 400px;
+  margin-top: 10px;
+  margin-left: 48px;
+}
+.shortInputBlock {
+  margin-top: 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.fromToBlock .shortInput {
+  width: 45%;
+}
+.fromToBlock .shortInputInactive {
+  pointer-events: none;
+  user-select: none;
+  filter: opacity(50%);
+}
+.countryBlock {
+  user-select: none;
+  color: white;
+  margin-left: 48px;
+  width: 400px;
+  margin-top: 10px;
+}
+.clearShowBtns {
+  margin-left: 48px;
+  margin-top: 40px;
+  width: 400px;
+  display: flex;
+  justify-content: space-between;
+}
+.endBtn {
+  width: 175px;
+  height: 46px;
+  border-radius: 10px;
+  color: white;
+  background-color: rgba(50, 53, 55, 1);
+}
+.endBtn:last-child {
+  background-color: rgba(123, 97, 255, 1);
+}
+.endBtn:hover {
+  filter: brightness(120%);
+}
+.endBtn:active {
+  filter: brightness(80%);
+}
+
+@media (max-width: 500px) {
+  .main {
+    width: 320px;
+  }
+  .name {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .filmName .nameInput {
+    width: 320px;
+  }
+  .filmName {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .genre {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .fromToBlock {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .countryBlock {
+    width: 320px;
+    margin-left: 5px;
+  }
+  .clearShowBtns {
+    width: 320px;
+    margin-left: 5px;
+  }
+}
+@media (max-width: 320px) {
+  .bgFilter {
+    display: none;
+  }
+}

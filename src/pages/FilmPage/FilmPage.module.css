@@ -1,0 +1,221 @@
+html, body {
+    width: 100%;
+}
+.filmMain {
+    display: flex;
+    margin-top: 50px;
+    height: 100%;
+}
+.filmPosterPart {
+    width: 300px;
+    height: 100%;
+}
+.posterImg {
+    width: 266px;
+    height: 356px;
+    border-radius: 20px;
+}
+.feedback {
+    margin-top: 20px;
+    display: flex;
+    width: 266px;
+    height: 56px;
+}
+.feedbackBtnFavor {
+    user-select: none;
+    width: 50%;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px 0 0 10px;
+    border-right: 2px solid black;
+    background-color: rgba(50, 53, 55, 1);
+}
+.feedbackBtnFavorWhite {
+    background-color: rgb(150, 150, 150);
+    border-right: 2px solid white;
+}
+.feedbackBtnFavor:hover {
+    background-color: gray;
+}
+.feedbackBtnFavor:active {
+    background-color: rgb(41, 41, 41);
+}
+.feedbackBtnFavorActive {
+    pointer-events: none;
+    background-color: rgba(123, 97, 255, 1);
+}
+
+.feedbackBtnShare {
+    user-select: none;
+    width: 50%;
+    height: 56px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0 10px 10px 0;
+    border-left: 2px solid black;
+    background-color: rgba(50, 53, 55, 1);
+}
+.feedbackBtnShareWhite {
+    background-color: rgb(150, 150, 150);
+    border-left: 2px solid white;
+}
+.feedbackBtnShare:hover {
+    background-color: gray;
+}
+.feedbackBtnShare:active {
+    background-color: rgb(41, 41, 41);
+}
+.filmDescPart {
+    width: 70%;
+    height: 100%;
+}
+.filmType {
+    user-select: none;
+    color: gray;
+}
+.filmTitle {
+    user-select: none;
+    color: white;
+    font-weight: 600;
+    font-size: 40px;
+}
+.filmTitleWhite {
+    color: gray;
+}
+.filmRateAndTime {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    display: flex;
+    width: 220px;
+    justify-content: space-between;
+}
+.filmRate {
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35px;
+    height: 25px;
+    color: white;
+    border-radius: 10px;
+}
+.filmImdbRate {
+    user-select: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 70px;
+    height: 25px;
+    color: white;
+    background-color: rgb(56, 56, 56);
+    border-radius: 10px;
+}
+.filmRuntime {
+    user-select: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 65px;
+    height: 25px;
+    color: white;
+    background-color: rgb(56, 56, 56);
+    border-radius: 10px;
+}
+.filmGoodRate {
+    background-color: green;
+}
+.filmBadRate {
+    background-color: red;
+}
+.filmNotGoodRate {
+    background-color: rgb(230, 163, 7);
+}
+.filmDesc {
+    color: gray;
+    width: 100%;
+}
+.miscDescPart {
+    width: 65%;
+    justify-content: space-between;
+    display: flex;
+}
+.miscDesc {
+    margin-top: 35px;
+}
+.miscDesc li {
+    width: 400px;
+    color: gray;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+li span {
+    width: 50%;
+}
+
+
+@media (max-width: 1200px) {
+    .filmDescPart {
+        width: 60%;
+    }
+    .miscDesc li{
+        width: 300px;
+    }
+    .filmDesc {
+        width: 90%;
+    }
+    .filmType {
+        width: 90%;
+    }
+    .filmTitle {
+        width: 90%;
+    }
+}
+@media (max-width: 930px) {
+    .filmPosterPart {
+        width: 200px;
+    }
+    .feedback {
+        width: 100%;
+    }
+    .filmDescPart {
+        width: 50%;
+    }
+}
+@media (max-width: 768px) {
+    .miscDescPart {
+        margin-left: 5px;
+        width: 100%;
+    }
+    .filmDescPart {
+        margin-left: 20px;
+    }
+}
+@media (max-width: 550px) {
+    .miscDesc li {
+        width: 280px;
+    }
+}
+@media (max-width: 525px) {
+    .filmMain {
+        flex-wrap: wrap;
+    }
+    .filmPosterPart {
+        width: 266px;
+        height: 50%;
+    }
+    .filmDescPart {
+        width: 100%;
+    }
+}
+@media (max-width: 375px) {
+    .miscDescPart {
+        width: 90%;
+    }
+    .miscDesc li {
+        width: 270px;
+    }
+}

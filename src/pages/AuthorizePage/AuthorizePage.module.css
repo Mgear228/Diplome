@@ -1,0 +1,106 @@
+.authorizeTheme {
+    background: url('../../assets/authorizeAssets/authorizeTheme.PNG');
+    width: 100%;
+    height: 100%;
+}
+.pixema {
+    padding-left: 40px;
+    padding-top: 20px;
+}
+.authorizeMain {
+    margin: 50px auto 0;
+    background-color: rgba(36, 36, 38, 1);
+    width: 400px;
+    height: 500px;
+    border-radius: 20px;
+}
+.authorizeMainWhite {
+    background-color: white;
+}
+.authorizeWind {
+    width: 85%;
+    padding-top: 36px;
+    margin-left: 30px;
+}
+.copyright {
+    margin-top: 100px;
+    margin-left: calc(50% - 80px);
+}
+.authText {
+    color: white;
+    font-size: 20px;
+}
+.authTextWhite {
+    color: black;
+}
+.inputBlock {
+    width: 100%;
+    color: white;
+    margin-top: 36px;
+}
+.inputBlockWhite {
+    color: black;
+}
+.inputBlock .longInp {
+    margin-top: 10px;
+    width: 100%;
+}
+.inputBlockLast {
+    margin-top: 10px;
+}
+.forgotPsd {
+    color: gray;
+    margin-top: 10px;
+    font-size: 15px;
+    user-select: none;
+    cursor: pointer;
+}
+.forgotPsd:hover {
+    text-decoration: underline;
+}
+.forgotPsd:active {
+    color: lightgray;
+}
+.signInBtn {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+    border-radius: 10px;
+    color: white;
+    height: 50px;
+    background-color: rgba(123, 97, 255, 1);
+    user-select: none;
+}
+.signInBtn:hover {
+    filter: brightness(120%);
+}
+.signInBtn:active {
+    filter: brightness(80%);
+}
+.signInText {
+    color: gray;
+    margin-top: 30px;
+    font-size: 15px;
+    margin-left: calc(50% - 105px);
+}
+.signUpBtn {
+    cursor: pointer;
+    user-select: none;
+    margin-left: 5px;
+    color: rgba(123, 97, 255, 1);
+}
+.signUpBtn:hover {
+    text-decoration: underline;
+}
+.signUpBtn:active {
+    filter: brightness(120%);
+}
+
+@media (max-width: 400px) {
+    .authorizeMain {
+        width: 320px;
+    }
+}

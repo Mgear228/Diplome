@@ -1,0 +1,17 @@
+.navigation {
+    position: sticky;
+    height: 704px;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 160px;
+    padding-top: 48px;
+    margin-left: 62px;
+}
+
+@media (max-width: 768px) {
+    .navigation {
+        display: none;
+    }
+}

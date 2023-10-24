@@ -1,0 +1,50 @@
+html, body {
+    width: 100%;
+}
+.mainPage {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: 100%;
+}
+.whiteTheme {
+    background-color: ghostwhite;
+}
+.darkTheme {
+    background-color: rgba(0, 0, 0, 1);
+}
+.paginationAndSearch {
+    width: 75%;
+    height: 1014px;
+    padding-top: 48px;
+    margin-left: 120px;
+}
+
+@media (max-width: 1200px) {
+    .paginationAndSearch {
+        width: 70%;
+        margin-left: 100px;
+    }
+}
+@media (max-width: 970px) {
+    .paginationAndSearch {
+        width: 65%;
+        margin-left: 70px;
+    }
+}
+@media (max-width: 768px) {
+    .paginationAndSearch {
+        width: 90%;
+        margin-left: 10px;
+    }
+}
+@media (max-width: 550px) {
+    .paginationAndSearch {
+        width: 95%;
+    }
+}
+@media (max-width: 500px) {
+    .paginationAndSearch {
+        width: 90%;
+    }
+}

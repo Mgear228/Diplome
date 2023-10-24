@@ -1,0 +1,50 @@
+.filtrationGroup {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
+.filter {
+    top: 30%;
+    left: 70%;
+    position: absolute;
+    border-radius: 10px;
+}
+.filter:hover {
+    background-color: rgb(74, 74, 74);
+}
+.filter:active {
+    background-color: rgb(85, 85, 85);
+}
+.logo {
+    display: none;
+    margin-right: 50px;
+}
+.filtrationGroup .phoneInput {
+    width: 90%;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .logo {
+        display: inline;
+    }
+    .filter {
+        left: 82%;
+    }
+    .filtrationGroup .shorterInput {
+        width: 60%;
+    }
+}
+@media (max-width: 500px) {
+    .filtrationGroup .shorterInput {
+        display: none;
+    }
+    .filtrationGroup {
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .filter {
+        z-index: 1;
+        top: 70%;
+    }
+}

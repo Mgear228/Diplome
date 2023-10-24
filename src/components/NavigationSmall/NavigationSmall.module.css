@@ -1,0 +1,35 @@
+.navSmall {
+    list-style: none;
+    cursor: pointer;
+    margin-top: 104px;
+    color: rgba(128, 133, 139, 1);
+}
+.listElem {
+    user-select: none;
+    display: flex;
+    margin-bottom: 40px;
+    border-radius: 10px;
+}
+.listElem:hover {
+    background-color: rgb(74, 74, 74);
+}
+.listElem:active {
+    background-color: rgb(85, 85, 85);
+}
+.listElemActive {
+    color: rgba(123, 97, 255, 1);
+    fill: rgba(123, 97, 255, 1);
+}
+.listElem:nth-child(4) {
+    margin-bottom: 0;
+}
+.listImg {
+    margin-right: 20px;
+    width: 24px;
+    height: 24px;
+}
+.lock {
+    margin-left: 30px;
+    width: 25px;
+    height: 25px;
+}

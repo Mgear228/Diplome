@@ -1,0 +1,173 @@
+.username {
+    display: flex;
+    position: relative;
+    align-items: center;
+    width: 25%;
+}
+.userGroup {
+    margin-left: 20px;
+    width: 75%;
+    display: flex;
+    align-items: center;
+}
+.userShort {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background-color: rgba(123, 97, 255, 1);
+    border-radius: 10px;
+    color: white;
+    font-weight: 500;
+    font-size: 20px;
+    user-select: none;
+}
+.name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    margin-left: 15px;
+    color: white;
+}
+.nameWhite {
+    color: black;
+}
+.enter {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    height: 56px;
+    margin-left: 15px;
+    color: white;
+    user-select: none;
+}
+.enter:hover {
+    text-decoration: underline;
+}
+.enter:active {
+    color: gray;
+}
+.nameDark {
+    color: black;
+}
+.arrow {
+    width: 15px;
+    height: 15px;
+}
+.arrowGroup {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 10px;
+}
+.arrowGroup:hover {
+    background-color: rgb(74, 74, 74);
+}
+.arrowGroup:active {
+    background-color: rgb(85, 85, 85);
+}
+.userDropDown {
+    left: 0;
+    top: 110%;
+    width: 100%;
+    height: 50px;
+    background-color: rgb(25, 25, 25);
+    border-radius: 10px;
+    display: flex;
+    z-index: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+}
+.dropDownElem {
+    user-select: none;
+    text-align: center;
+    border-radius: 10px;
+    width: 90%;
+    height: 30px;
+    background-color: rgb(116, 0, 0);
+    color: white;
+}
+.dropDownElem:hover {
+    filter: brightness(120%);
+}
+.dropDownElem:active {
+    filter: brightness(80%);
+}
+@keyframes In {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    } to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+.active {
+    animation: In 0.3s forwards;
+}
+@keyframes Out {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    } to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+.inactive {
+    animation: Out 0.3s forwards;
+}
+.profileRegister {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    background-color: rgba(123, 97, 255, 1);
+    border-radius: 10px;
+    margin-left: 10px;
+    user-select: none;
+    transition: 0.3s;
+}
+.profileRegActive {
+    transform: translateX(160px);
+}
+.profileRegister:hover {
+    filter: brightness(120%);
+}
+.profilePicture {
+    width: 45px;
+    height: 45px;
+}
+@keyframes NameIn {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    } to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+.enterActive {
+    animation: NameIn 0.3s forwards;
+}
+@keyframes NameOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    } to {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+}
+.enterInactive {
+    animation: NameOut 0.3s forwards;
+}
